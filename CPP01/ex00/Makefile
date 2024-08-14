@@ -1,8 +1,8 @@
 
 NAME = zombie
 
-CXX = g++
-CXXFLAGS = -Wall -Wextra
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJS = $(SRCS:.cpp=.o)
@@ -24,5 +24,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean 
+.PHONY: all clean fclean re
 

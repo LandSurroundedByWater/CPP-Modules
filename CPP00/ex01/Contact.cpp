@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timo <timo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 08:53:30 by timo              #+#    #+#             */
-/*   Updated: 2024/07/18 16:05:27 by timo             ###   ########.fr       */
+/*   Updated: 2024/08/09 10:38:43 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,43 +20,25 @@ Contact::~Contact()
 {
 }
 
-std::string Contact::get_firstName() const 
-{
-    return this->_firstName;
-}
+std::string Contact::getFirstName() const  {  return this->_firstName; }
 
-std::string Contact::get_lastName() const 
-{
-    return this->_lastName;
-}
+std::string Contact::getLastName() const { return this->_lastName; }
 
-std::string Contact::get_nickName() const
-{
-	return (this->_nickName);
-}
+std::string Contact::getNickName() const { return (this->_nickName); }
 
-std::string Contact::get_phoneNumber() const
-{
-	return (this->_phoneNumber);
-}
+std::string Contact::getPhoneNumber() const  { return (this->_phoneNumber);  }
 
-std::string Contact::get_darkestSecret() const
-{
-	return (this->_darkestSecret);
-}
+std::string Contact::getDarkestSecret() const  { return (this->_darkestSecret);  }
 
-//-------------------------------------------------------------
+bool isValidInput(const std::string& name);
 
-bool Contact::set_firstName(std::string name)
+bool Contact::setFirstName(std::string name)
 {
-	if (name == "")
-	{
-		std::cout << "First name cannot be empty." << std::endl;
+	if (!isValidInput(name))
 		return false;
-	}
 	for (char c : name) 
 	{
-		if (!std::isalpha(c) && !std::isspace(c)) 
+		if (!std::isalpha(c) && !std::isspace(c) && c != '-') 
 		{
 			std::cout << "Invalid input." << std::endl;
 			return false;
@@ -66,16 +48,13 @@ bool Contact::set_firstName(std::string name)
 	return true;
 }
 
-bool Contact::set_lastName(std::string name)
+bool Contact::setLastName(std::string name)
 {
-	if (name == "")
-	{
-		std::cout << "Invalid input, Last name cannot be empty." << std::endl;
+	if (!isValidInput(name))
 		return false;
-	}
 	for (char c : name) 
 	{
-		if (!std::isalpha(c) && !std::isspace(c)) 
+		if (!std::isalpha(c) && !std::isspace(c) && c != '-') 
 		{
 			std::cout << "Invalid input." << std::endl;
 			return false;
@@ -85,16 +64,13 @@ bool Contact::set_lastName(std::string name)
 	return true;
 }
 
-bool Contact::set_nickName(std::string name)
+bool Contact::setNickName(std::string name)
 {
-	if (name == "")
-	{
-		std::cout << "Nickname cannot be empty." << std::endl;
+	if (!isValidInput(name))
 		return false;
-	}
 	for (char c : name) 
 	{
-		if (!std::isalpha(c) && !std::isspace(c)) 
+		if (!std::isalpha(c) && !std::isspace(c) && c != '-') 
 		{
 			std::cout << "Invalid input." << std::endl;
 			return false;
@@ -104,16 +80,17 @@ bool Contact::set_nickName(std::string name)
 	return true;
 }
 
-bool Contact::set_phoneNumber(std::string number)
+bool Contact::setPhoneNumber(std::string number)
 {
-	if (number == "")
-	{
-		std::cout << "Phone number cannot be empty." << std::endl;
+	size_t start = 0;
+	if (!isValidInput(number))
 		return false;
-	}
-	for (char c : number) 
+	if (number [0] == '+')
+		start++;
+	for (size_t i =  start; i < number.size(); ++i)  
 	{
-		if (!std::isdigit(c) && !std::isspace(c) && c != '+') 
+		char c = number[i];
+		if (!std::isdigit(c) && !std::isspace(c)) 
 		{
 			std::cout << "Invalid input." << std::endl;
 			return false;
@@ -123,16 +100,13 @@ bool Contact::set_phoneNumber(std::string number)
 	return true;
 }
 
-bool Contact::set_darkestSecret(std::string secret)
+bool Contact::setDarkestSecret(std::string secret)
 {
-	if (secret == "")
-	{
-		std::cout << "Your secret cannot be empty." << std::endl;
+	if (!isValidInput(secret))
 		return false;
-	}
 	for (char c : secret) 
 	{
-		if (!std::isalpha(c) && !std::isspace(c)) 
+		if (!std::isprint(c) && !std::isspace(c))
 		{
 			std::cout << "Invalid input." << std::endl;
 			return false;
@@ -140,4 +114,20 @@ bool Contact::set_darkestSecret(std::string secret)
 	}
 	this->_darkestSecret = secret;
 	return true;
+}
+
+bool isValidInput(const std::string& name) 
+{
+	if (name.empty())
+	{
+		std::cout << "Invalid input, field cannot be empty." << std::endl;
+		return false;
+	}
+	for (char c : name) 
+	{
+		if (!std::isspace(c))
+			return true;
+	}
+	std::cout << "Invalid input." << std::endl;
+	return false;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timo <timo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:49:50 by tsaari            #+#    #+#             */
-/*   Updated: 2024/07/18 17:03:00 by timo             ###   ########.fr       */
+/*   Updated: 2024/08/07 10:54:49 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-
-
+#include <cstdlib>
 
 class PhoneBook 
 {
@@ -30,10 +29,9 @@ public:
 	PhoneBook();
 	~PhoneBook();
 	void intro(void) const;
-	void add_contact(void);
+	void addContact(void);
 	void searchContact (void) const;
 	void printSpecificContact (void) const;
 };
-
 
 #endif

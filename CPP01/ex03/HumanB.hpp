@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:31:34 by timo              #+#    #+#             */
-/*   Updated: 2024/07/26 11:18:46 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/10 15:24:35 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef HUMANB_HPP
 #define HUMANB_HPP
@@ -27,10 +25,7 @@ class HumanB
 	
 	public:
 		HumanB(std::string name);
-		HumanB(const HumanB& other);
-		HumanB operator=(const HumanB& other);
 		~HumanB();
-
 		void attack(void) const;
 		void setWeapon(Weapon& weapon);
 };

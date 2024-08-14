@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timo <timo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 08:52:22 by timo              #+#    #+#             */
-/*   Updated: 2024/07/18 11:47:04 by timo             ###   ########.fr       */
+/*   Updated: 2024/08/07 10:55:10 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cstdlib>
 
 class Contact
 {
@@ -24,16 +25,16 @@ class Contact
 	public:
 		Contact();
 		~Contact();
-		// funktiot
-		std::string get_firstName() const;
-		std::string get_lastName() const;
-		std::string get_nickName(void) const;
-		std::string get_phoneNumber(void) const;
-		std::string get_darkestSecret(void) const;
+	
+		std::string getFirstName() const;
+		std::string getLastName() const;
+		std::string getNickName(void) const;
+		std::string getPhoneNumber(void) const;
+		std::string getDarkestSecret(void) const;
 
-		bool set_firstName(std::string name);
-		bool set_lastName(std::string name);
-		bool set_nickName(std::string name);
-		bool set_phoneNumber(std::string number);
-		bool set_darkestSecret(std::string number);
+		bool setFirstName(std::string name);
+		bool setLastName(std::string name);
+		bool setNickName(std::string name);
+		bool setPhoneNumber(std::string number);
+		bool setDarkestSecret(std::string number);
 };

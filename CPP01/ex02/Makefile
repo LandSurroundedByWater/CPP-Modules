@@ -1,8 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/10 14:11:38 by tsaari            #+#    #+#              #
+#    Updated: 2024/08/14 09:34:19 by tsaari           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = ptrvsref
 
-CXX = g++
-CXXFLAGS = -Wall -Wextra
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+
 
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
@@ -24,5 +36,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean 
+.PHONY: all clean fclean re
 

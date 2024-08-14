@@ -3,36 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:35:02 by timo              #+#    #+#             */
-/*   Updated: 2024/07/26 11:16:55 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/11 14:38:15 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-HumanA::HumanA() {}
-
 HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon)	
 {
-}
-
-HumanA::HumanA(const HumanA &other) : _name(other._name), _weapon(other._weapon) 
-{
-}
-
-HumanA& HumanA::operator=(const HumanA &other) {
-    if (this == &other) {
-        return *this;
-    }
-    _name = other._name;
-    _weapon = other._weapon;
-    return *this;
+	std::cout << "HumanA " << this->_name << " is created with weapon " << this->_weapon.getType() << std::endl;
 }
 
 HumanA::~HumanA()
 {
+	std::cout << "HumanA " << this->_name << " destroyed."<< std::endl;
 }
 
 void HumanA::attack(void) const

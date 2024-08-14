@@ -3,29 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: timo <timo@student.42.fr>                  +#+  +:+       +#+         #
+#    By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/08 19:11:42 by tsaari            #+#    #+#              #
-#    Updated: 2024/07/18 10:12:40 by timo             ###   ########.fr        #
+#    Updated: 2024/08/07 12:41:34 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 
-CXX = g++
-CXXFLAGS = -Wall -Wextra
+
+CC = c++
+CCFLAGS = -Wall -Wextra -Werror
 
 SRCS = PhoneBook.cpp main.cpp Contact.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CC) $(CCFLAGS) -o $@ $^
+	@echo "\033[1;32mCompile success!\n\033[0m"
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CC) $(CCFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
@@ -35,4 +36,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean 
+.PHONY: all clean fclean re
+

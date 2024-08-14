@@ -3,29 +3,29 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+         #
+#    By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/08 19:11:42 by tsaari            #+#    #+#              #
-#    Updated: 2024/06/08 19:12:49 by tsaari           ###   ########.fr        #
+#    Updated: 2024/08/07 12:41:48 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = megaphone
 
-CXX = g++
-CXXFLAGS = -Wall -Wextra
+CC = c++
+CCFLAGS = -Wall -Wextra -Werror
 
 SRCS = megaphone.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CC) $(CCFLAGS) -o $@ $^
+	@echo "\033[1;32mCompile success!\n\033[0m"
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CC) $(CCFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
