@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 08:56:32 by tsaari            #+#    #+#             */
-/*   Updated: 2024/08/13 11:30:24 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/21 09:42:30 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ Fixed::Fixed()
 	this->_value = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
-
-
 
 Fixed::Fixed(const Fixed& orig)
 {
@@ -41,11 +39,13 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits(void) const
 {
+	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_value);
 }
 
 void Fixed::setRawBits(int const raw)
 {
+	std::cout << "setRawBits member function called" << std::endl;
 	this->_value = raw;
 }
 

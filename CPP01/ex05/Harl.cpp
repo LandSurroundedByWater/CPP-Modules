@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 10:38:05 by tsaari            #+#    #+#             */
-/*   Updated: 2024/08/14 10:57:32 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/14 09:32:52 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void Harl::complain( std::string level )
 {
 	t_function functions [5]= { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error, &Harl::unknown};
 	
+
 	Level currentLevel = getLevel(level);
 	switch (currentLevel)
 	{

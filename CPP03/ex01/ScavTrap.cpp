@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:35:02 by timo              #+#    #+#             */
-/*   Updated: 2024/07/26 12:20:57 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/25 15:23:12 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ ScavTrap::~ScavTrap()
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (this->_energyPoints < 1)
+	if (this->getEnergyPoints() < 1)
 	{
 		std::cout << "ScavTrap " << this->_name << " has no energy!" << std::endl;
 		return;
 	}
 	
-	else if (this->_hitPoints < 1)
+	else if (this->getHitPoints() < 1)
 	{
 		std::cout << "ScavTrap " << this->_name << " has no hit points!" << std::endl;
 		return;

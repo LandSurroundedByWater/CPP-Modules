@@ -6,14 +6,14 @@
 #    By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/08 19:11:42 by tsaari            #+#    #+#              #
-#    Updated: 2024/08/07 12:41:48 by tsaari           ###   ########.fr        #
+#    Updated: 2024/08/23 11:43:20 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = megaphone
 
 CC = c++
-CCFLAGS = -Wall -Wextra -Werror
+CCFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = megaphone.cpp
 OBJS = $(SRCS:.cpp=.o)

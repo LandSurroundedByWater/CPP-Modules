@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 08:57:57 by tsaari            #+#    #+#             */
-/*   Updated: 2024/08/24 09:10:43 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/22 13:31:26 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ class Fixed
 	static const Fixed& min(const Fixed& first, const Fixed& other);
 	static Fixed& max(Fixed& first, Fixed& other);
 	static const Fixed& max(const Fixed& first, const Fixed& other);
+
+	Fixed abs() const;
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed);

@@ -6,14 +6,14 @@
 #    By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/08 19:11:42 by tsaari            #+#    #+#              #
-#    Updated: 2024/07/23 10:11:33 by tsaari           ###   ########.fr        #
+#    Updated: 2024/08/24 08:46:24 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fixedfloat
 
-CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = main.cpp Fixed.cpp
 OBJS = $(SRCS:.cpp=.o)

@@ -6,13 +6,11 @@
 /*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 08:56:32 by tsaari            #+#    #+#             */
-/*   Updated: 2024/08/24 09:23:03 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/22 14:32:37 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
-//-----------------Constructors and destructor------------------
 
 Fixed::Fixed()
 {
@@ -36,8 +34,8 @@ Fixed::Fixed(const float n)
 
 Fixed::Fixed(const Fixed& orig)
 {
-	//std::cout << "Copy constructor called" << std::endl;
 	*this = orig;
+	//std::cout << "Copy constructor called" << std::endl;
 }
 
 Fixed::~Fixed() 
@@ -53,7 +51,7 @@ Fixed& Fixed::operator=(const Fixed& other)
 	return *this;
 }
 
-//--------------------getters and setters-------------------------
+//----------setters and getters---------
 
 int Fixed::getRawBits(void) const
 {
@@ -65,17 +63,28 @@ void Fixed::setRawBits(int const raw)
 	this->_value = raw;
 }
 
-float Fixed::toFloat(void) const
+//------------conversions------------
+
+float Fixed::toFloat( void ) const
 {
-	return static_cast<float>(this->_value) / (1 << _fractionalBits);
+	return(float(this->_value) / (1 << _fractionalBits));
 }
 
-int Fixed::toInt(void) const
+int Fixed::toInt( void ) const
 {
 	return(this->_value >> _fractionalBits);
 }
 
-//-----------------comparison------
+//-------------overloaded stream insertion operator------
+
+std::ostream& operator<<(std::ostream& out, const Fixed& fixed) 
+{
+	out << fixed.toFloat();
+	return out;
+}
+
+
+//---------comparisons-------------
 
 bool Fixed::operator>(const Fixed& other) const 
 {
@@ -107,37 +116,25 @@ bool Fixed::operator!=(const Fixed& other) const
 
 ///------------arithmetic-------------
 
-
-Fixed Fixed::operator+(const Fixed& rhs) const 
+Fixed Fixed::operator+(const Fixed& other) const
 {
-	return Fixed(this->_value + rhs._value);
+    return Fixed((this->_value + other._value) >> _fractionalBits);
 }
 
-Fixed Fixed::operator-(const Fixed& rhs) const 
+Fixed Fixed::operator-(const Fixed& other) const
 {
-	return Fixed(this->_value - rhs._value);
+    return Fixed((this->_value - other._value) >> _fractionalBits);
 }
 
-
-Fixed Fixed::operator*(const Fixed& rhs) const 
+Fixed Fixed::operator*(const Fixed& other) const
 {
-	long long rawResult = static_cast<long long>(this->_value) * rhs._value;
-	int adjustedResult = static_cast<int>(rawResult >> _fractionalBits);
-	Fixed temp;
-	temp._value = adjustedResult;
-	return temp;
-}
-	
-
-Fixed Fixed::operator/(const Fixed& rhs) const 
-{
-	int rawResult = this->_value / rhs._value;
-	int adjustedResult = rawResult >> _fractionalBits;
-	Fixed temp;
-	temp._value = adjustedResult;
-	return temp;
+    return Fixed(((this->_value * other._value) >> _fractionalBits) >> _fractionalBits);
 }
 
+Fixed Fixed::operator/(const Fixed& other) const
+{
+    return Fixed((this->_value << _fractionalBits) / other._value);
+}
 
 //-------------------increment/decrement--------------
 
@@ -167,33 +164,40 @@ Fixed Fixed::operator--(int)
 	return temp;
 }
 
-//-----------min and max --------------p
+//-----------min and max of two Fixed point numbers----------
 
 //modifiable functions
 Fixed& Fixed::min(Fixed& first, Fixed& other)
 {
-	return (first.getRawBits() < other.getRawBits()) ? first : other;
+	if(first.getRawBits() < other.getRawBits())
+		return first;
+	return other;
 }
 
 Fixed& Fixed::max(Fixed& first, Fixed& other)
 {
-	return (first.getRawBits() > other.getRawBits()) ? first : other;
+	if(first.getRawBits() > other.getRawBits())
+		return first;
+	return other;
 }
 //read only functions
 const Fixed& Fixed::min(const Fixed& first, const Fixed& other)
 {
-	return (first.getRawBits() < other.getRawBits()) ? first : other;
+	if(first.getRawBits() < other.getRawBits())
+		return first;
+	return other;
 }
 
 const Fixed& Fixed::max(const Fixed& first, const Fixed& other)
 {
-	return (first.getRawBits() > other.getRawBits()) ? first : other;
+	if(first.getRawBits() > other.getRawBits())
+		return first;
+	return other;
 }
-
-//------------overload stream insertion operator------------
-std::ostream& operator<<(std::ostream& out, const Fixed& fixed) 
+Fixed Fixed::abs() const 
 {
-	out << fixed.toFloat();
-	return out;
+	if (_value < 0) {
+		return Fixed(-toFloat());
+	}
+	return *this;
 }
-

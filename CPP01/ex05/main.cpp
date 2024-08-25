@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 10:18:17 by tsaari            #+#    #+#             */
-/*   Updated: 2024/08/14 10:52:11 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/12 09:42:03 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(void)
 {
 	Harl h;
-	h.complain(0);
+	h.complain("INFO");
 	std::cout << std::endl;
 	h.complain("INFO");
 	std::cout << std::endl;

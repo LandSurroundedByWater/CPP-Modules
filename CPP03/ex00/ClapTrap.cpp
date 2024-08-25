@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:35:02 by timo              #+#    #+#             */
-/*   Updated: 2024/07/26 12:12:18 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/25 14:47:47 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
+// ----------------------constructors-----------------
 
 ClapTrap::ClapTrap(std::string name)   : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(2)
 {
@@ -18,14 +20,14 @@ ClapTrap::ClapTrap(std::string name)   : _name(name), _hitPoints(10), _energyPoi
 }
 
 ClapTrap::ClapTrap (const ClapTrap& other)
-	:	_name(other._name), 
-		_hitPoints(other._hitpoints), 
-		_energyPoints(other._energypoints),
-		_attackDamage(other._attackDamage) {}
+{
+	std::cout << "ClapTrap " << this->_name << " is copied" << std::endl;
+	*this = other;
+}
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-	if (*this == other)
+	if (this == &other)
 		return *this;
 	else 
 	{

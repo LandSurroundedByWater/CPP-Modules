@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 08:59:51 by tsaari            #+#    #+#             */
-/*   Updated: 2024/07/23 10:05:48 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/24 09:26:11 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,42 @@
 int main( void ) 
 {
 	Fixed a;
-	Fixed const b( 10 );
-	Fixed const c( 42.42f );
-	Fixed const d( b );
-	a = Fixed( 1234.4321f );
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-	return (0);
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	return 0;
 }
+
+
+/*int main( void ) 
+{
+	Fixed a;
+	Fixed const b( Fixed( 5.06f ) * Fixed( 2 ) );
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << "a is: " << a << std::endl;
+	std::cout << "b is: " << b << std::endl;
+	std::cout << " a = b = " << (a + b) << std::endl;
+	std::cout << " a - b = " << (a - b) << std::endl;
+	std::cout << " a * b = " << (a * b) << std::endl;
+	std::cout << " b / a = " << (b / a) << std::endl;
+	
+	std::cout << Fixed::min( a, b ) << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	
+	std::cout << "a is: " << a << std::endl;
+	std::cout << "b is: " << b << std::endl;
+	if (a > b) 
+		std::cout << "hell yeah" << std::endl;
+	else
+		std::cout << "sorry no" << std::endl;
+	return 0;
+}*/
+

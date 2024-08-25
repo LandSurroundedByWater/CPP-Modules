@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 10:38:05 by tsaari            #+#    #+#             */
-/*   Updated: 2024/08/14 09:23:40 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/23 08:36:06 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void Harl::error( void )
 void Harl::unknown( void )
 {
 	std::cout << "[ Probably complaining about insignificant problems. ]" << std::endl;
-	std::cout << "If you  really have something to complain, give one of following levels: DEBUG, INFO, WARNING, ERROR" << std::endl;
+	std::cout << "If you really have something to complain, give one of following levels: DEBUG, INFO, WARNING, ERROR" << std::endl;
 	std::cout << std::endl;
 }
 

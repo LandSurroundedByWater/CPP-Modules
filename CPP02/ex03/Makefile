@@ -6,27 +6,26 @@
 #    By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/08 19:11:42 by tsaari            #+#    #+#              #
-#    Updated: 2024/08/23 11:43:11 by tsaari           ###   ########.fr        #
+#    Updated: 2024/08/24 08:46:36 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = fixedfloat
 
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
-CC = c++
-CCFLAGS = -Wall -Wextra -Werror -std=c++11
-
-SRCS = PhoneBook.cpp main.cpp Contact.cpp
+SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJS = $(SRCS:.cpp=.o)
+
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CCFLAGS) -o $@ $^
-	@echo "\033[1;32mCompile success!\n\033[0m"
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp
-	$(CC) $(CCFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
@@ -36,5 +35,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
-
+.PHONY: all clean 
