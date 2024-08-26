@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 11:41:03 by tsaari            #+#    #+#             */
-/*   Updated: 2024/08/25 15:22:11 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/08/26 08:53:19 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ class ScavTrap : public ClapTrap
 	private:
 		ScavTrap();
 	public:
-
+		
 		ScavTrap(std::string _name);
-
-		void attack (const std::string& target);
+		~ScavTrap();
 		void guardGate();
 };
 
