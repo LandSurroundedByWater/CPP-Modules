@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 11:41:03 by tsaari            #+#    #+#             */
-/*   Updated: 2024/07/26 12:43:56 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/09/06 10:02:14 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ class FragTrap : public ClapTrap
 public:
 
 	FragTrap(std::string name);
-	FragTrap::FragTrap(const FragTrap& other);
-	FragTrap& operator=(const FragTrap& other)
-	~FragTrap() override;
+	FragTrap (const FragTrap& other);
+	FragTrap& operator=(const FragTrap& other);
+	~FragTrap();
 
-	//void attack (const std::string& target) override;
+	void attack (const std::string& target) override;
 	void highFivesGuys(void);
 };
 

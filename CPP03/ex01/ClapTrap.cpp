@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:35:02 by timo              #+#    #+#             */
-/*   Updated: 2024/08/26 08:41:23 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/09/06 09:42:20 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ ClapTrap::ClapTrap(std::string name)   : _name(name), _hitPoints(10), _energyPoi
 	std::cout << "ClapTrap " << this->_name << " is created" << std::endl;
 }
 
-
 ClapTrap::ClapTrap (const ClapTrap& other)
 {
 	std::cout << "ClapTrap " << this->_name << " is copied" << std::endl;
@@ -28,16 +27,15 @@ ClapTrap::ClapTrap (const ClapTrap& other)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-	if (this == &other)
-		return *this;
-	else 
+	if (this != &other)
 	{
 		_name = other._name;
 		_hitPoints = other._hitPoints;
 		_energyPoints = other._energyPoints;
 		_attackDamage = other._attackDamage;
-		return *this;
+		std::cout << "ClapTrap " << this->_name << " copy assignment operator used" << std::endl;
 	}
+	return *this;
 } 
 
 ClapTrap::~ClapTrap()
@@ -60,7 +58,7 @@ void ClapTrap::attack(const std::string& target)
 	}
 	else
 	{
-		std::cout << "ClapTrap " << this->_name << " attacks " << target << " causing " << this->_attackDamage << " points of damage!" << std::endl;
+		std::cout << "ClapTrap attacks " << target << " causing " << this->_attackDamage << " points of damage!" << std::endl;
 		this->_energyPoints -= 1;
 	}
 }
@@ -84,6 +82,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if (this->_energyPoints < 1)
 	{
 		std::cout << "ClapTrap " << this->_name << " has no energy points left!" << std::endl;
+	}
+	else if (this->_hitPoints < 1)
+	{
+		std::cout << "ClapTrap " << this->_name << " has no hit points left!" << std::endl;
+		return;
 	}
 	else
 	{

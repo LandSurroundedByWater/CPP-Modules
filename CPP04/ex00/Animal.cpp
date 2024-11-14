@@ -5,25 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 10:20:30 by tsaari            #+#    #+#             */
-/*   Updated: 2024/07/26 10:47:57 by tsaari           ###   ########.fr       */
+/*   Created: 2024/09/20 09:08:00 by tsaari            #+#    #+#             */
+/*   Updated: 2024/09/20 09:08:03 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal(std::type) : type(type)
+// ----------------------Constructors-----------------
+
+Animal::Animal()
 {
-	std::string << "New Animal " << type << "born" <<std::endl; 
+	_type = "Nontype animal";
+	std::cout << "Animal nonparametric default constructor used" <<std::endl; 
 }
 
-~Animal() {}
-
-std::string Animal::get_type() const{
-	return type;
+Animal::Animal(std::string type) : _type(type)
+{
+	std::cout << "Animal type of " << _type << " parametric constructor used" <<std::endl; 
 }
 
-void Animal::makeSound()
+Animal::Animal (const Animal& other) : _type(other._type) 
 {
-	std::count << "Some generic animal Sound" << std::endl;
+		std::cout << "Animal type of " << _type << " copy constructor used" <<std::endl; 
+
+}
+
+Animal& Animal::operator=(const Animal& other)
+{
+	if (this == &other)
+	{
+		this->setType(other._type);
+			std::cout << "Animal type of " << _type << " copy assign operator used" <<std::endl; 
+	}
+	return *this;
+} 
+
+// ----------------------Destructor-----------------
+
+Animal::~Animal() 
+{
+		std::cout << "Animal type of " << _type << " destructor used" <<std::endl; 
+}
+
+std::string Animal::getType() const
+{
+	return _type;
+}
+
+
+//-------------Member functions------------------
+
+void Animal::makeSound() const
+{
+	std::cout << "Some generic animal Sound" << std::endl;
+}
+
+void Animal::setType(std::string type)
+{
+	this->_type = type;
 }

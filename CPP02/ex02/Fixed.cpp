@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 08:56:32 by tsaari            #+#    #+#             */
-/*   Updated: 2024/08/24 09:23:03 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/10/14 13:41:25 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ bool Fixed::operator<=(const Fixed& other) const
 bool Fixed::operator==(const Fixed& other) const 
 {
 	return this->getRawBits() == other.getRawBits();
+	
 }
 bool Fixed::operator!=(const Fixed& other) const 
 {

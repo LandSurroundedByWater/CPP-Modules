@@ -12,30 +12,55 @@
 
 #include "DiamondTrap.hpp"
 
+//------------- Constructors ------------------
 
-// Constructor
 
 DiamondTrap::DiamondTrap(std::string name) 
 	:	ClapTrap(name + "_clap_name"), 
-		ScavTrap(name), 
-		FragTrap(name), 
-		_name(name) 
+		ScavTrap(name),
+		FragTrap(name),
+		_name(name)
 {
-    std::cout << "DiamondTrap " << this->_name << " is hunting!" << std::endl;
-
-    setHitPoints(FragTrap::getHitPoints());
-    setEnergyPoints(ScavTrap::getEnergyPoints());
-    setAttackDamage(FragTrap::getAttackDamage());
+	std::cout << "DiamondTrap " << this->_name << " is hunting!" << std::endl;
+	setHitPoints(FragTrap::getHitPoints());
+	setEnergyPoints(ScavTrap::getEnergyPoints());
+	setAttackDamage(FragTrap::getAttackDamage());
 }
 
-// Destructor
-DiamondTrap::~DiamondTrap() 
+DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other), ScavTrap(other), FragTrap(other), _name(other._name) 
 {
-	std::cout << "DiamondTrap " << this->_name << " is killed!" << std::endl;
+	std::cout << "DiamondTrap " << this->_name << " is copied" << std::endl;
 }
 
-// Member function specific to DiamondTrap
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
+	if (this != &other) 
+	{
+		ClapTrap::operator=(other);
+		ScavTrap::operator=(other);
+		FragTrap::operator=(other);
+		_name = other._name;
+		std::cout << "DiamondTrap " << this->_name << " copy assignment operator used" << std::endl;
+	}
+	return *this;
+}
+
+// ----------Destructor------------------
+
+
+DiamondTrap::~DiamondTrap()
+{
+	std::cout << "DiamondTrap " << this->_name << " is buried undergroud!" << std::endl;
+}
+
+// -------------------Member function specific to DiamondTrap----------------
+
+void DiamondTrap::attack(std::string enemy)
+{
+	ScavTrap::attack(enemy);
+}
+
+
 void DiamondTrap::whoAmI() 
 {
-	std::cout << "I am " << this->_name << " and my ClapTrap name is " << this->_name << std::endl;
+	std::cout << "I am " << this->_name << " and my ClapTrap name is " << this->ClapTrap::_name<< std::endl;
 }

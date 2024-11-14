@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:35:02 by timo              #+#    #+#             */
-/*   Updated: 2024/08/25 14:47:47 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/09/06 09:42:20 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,15 @@ ClapTrap::ClapTrap (const ClapTrap& other)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-	if (this == &other)
-		return *this;
-	else 
+	if (this != &other)
 	{
 		_name = other._name;
 		_hitPoints = other._hitPoints;
 		_energyPoints = other._energyPoints;
 		_attackDamage = other._attackDamage;
-		return *this;
+		std::cout << "ClapTrap " << this->_name << " copy assignment operator used" << std::endl;
 	}
+	return *this;
 } 
 
 ClapTrap::~ClapTrap()
@@ -83,6 +82,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if (this->_energyPoints < 1)
 	{
 		std::cout << "ClapTrap " << this->_name << " has no energy points left!" << std::endl;
+	}
+	else if (this->_hitPoints < 1)
+	{
+		std::cout << "ClapTrap " << this->_name << " has no hit points left!" << std::endl;
+		return;
 	}
 	else
 	{

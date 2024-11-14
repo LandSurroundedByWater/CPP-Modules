@@ -3,20 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@hive.student.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:35:02 by timo              #+#    #+#             */
-/*   Updated: 2024/07/25 14:40:56 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/09/06 11:16:39 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
+// ----------------------constructors-----------------
+
 
 ClapTrap::ClapTrap(std::string name)   : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(2)
 {
 	std::cout << "ClapTrap " << this->_name << " is created" << std::endl;
 }
 
+
+ClapTrap::ClapTrap (const ClapTrap& other)
+{
+	*this = other;
+	std::cout << "ClapTrap " << this->_name << " is copied" << std::endl;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+{
+	if (this != &other)
+	{
+		_name = other._name;
+		_hitPoints = other._hitPoints;
+		_energyPoints = other._energyPoints;
+		_attackDamage = other._attackDamage;
+		std::cout << "ClapTrap " << this->_name << " copy assignment operator used" << std::endl;
+	}
+	return *this;
+} 
 
 ClapTrap::~ClapTrap()
 {
@@ -71,6 +93,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 	}
 }	
 
+
 int ClapTrap::getHitPoints() const
 {
 	return this->_hitPoints;
@@ -83,6 +106,11 @@ int ClapTrap::getAttackDamage() const
 {
 	return this->_attackDamage;
 }
+
+std::string ClapTrap::getName() const
+{
+	return this->_name;
+}	
 
 void ClapTrap::setHitPoints(int hitPoints)
 {
@@ -98,8 +126,3 @@ void ClapTrap::setAttackDamage(int attackDamage)
 {
 	this->_attackDamage = attackDamage;
 }
-
-std::string ClapTrap::getName() const
-{
-	return this->_name;
-}	
