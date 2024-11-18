@@ -8,9 +8,8 @@
 
 std::string capitalize(const std::string& str) {
     if (str.empty()) return str;
-    return toupper(str[0]) + str.substr(1);
+    return std::string(1, toupper(str[0])) + str.substr(1);
 }
-
 
 std::string getTypeString(const std::string& type) {
     static const std::map<std::string, std::string> typeMap = {
