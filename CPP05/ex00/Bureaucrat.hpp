@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:38:52 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 10:38:53 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/21 09:09:16 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ public:
     int getGrade() const;
     void increaseGrade();
     void decreaseGrade();
+  
 
 private:
     std::string _name;
@@ -47,6 +48,7 @@ private:
         public:
             const char  *what() const noexcept override;
     };
+   
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bgrat);

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:37:12 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 10:37:19 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/21 09:02:01 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ public:
 			const char *what() const noexcept override;
 	};
 
+	void checkGrade(const AForm& check);
+
 	
 
 private:
@@ -75,8 +77,6 @@ private:
 	bool _isSigned;
 	int _gradeToSign;
 	int _gradeReguiredToExecute;
-
-	void checkGrade(const AForm& check);
 };
 
 std::ostream &operator<<(std::ostream &out, const AForm &form);

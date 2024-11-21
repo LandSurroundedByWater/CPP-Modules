@@ -5,35 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/19 09:14:56 by tsaari           ###   ########.fr       */
+/*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
+/*   Updated: 2024/11/19 09:45:50 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include "Base.hpp"
+#include "whatever.hpp"
 
-Base*	generate( void );
-void	identify( Base* p );
-void	identify( Base& p );
-
-int	main( void )
-{
-	std::srand(std::time(NULL));
-	for (int i = 0; i < 10; i++)
-	{
-		std::cout << i << ":" << std::endl;
-		Base* base = generate();
-		identify( base );
-		identify( *base );
-		delete base;
+int main( void ) {
+	int a = 2;
+	int b = 3;
+	::swap( a, b );
+	std::cout << "a = " << a << ", b = " << b << std::endl;
+	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+	std::string c = "chaine1";
+	std::string d = "chaine2";
+	::swap(c, d);
+	std::cout << "c = " << c << ", d = " << d << std::endl;
+	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
+	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+	return 0;
 	}
-	std::cout << std::endl << "Test with nullptr" << std::endl;
-	{
-		Base* base2 = nullptr;
-		identify(base2);
-		identify(*base2);
-	}
-};

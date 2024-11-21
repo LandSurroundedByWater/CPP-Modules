@@ -29,36 +29,38 @@ void identify(Base* p)
 		std::cout << "pointer: C" << std::endl;
 	else if (p == NULL)
 		std::cout << "pointer: NULL" << std::endl;
+	else
+		std::cout << "Type: Unknown" << std::endl;
 }
 
 void identify(Base& p)
 {
-	Base temp;
-	try
-	{
-		temp = dynamic_cast<A&>(p);
-		(void)temp;
-		std::cout << "reference A" << std::endl;
-	}
-	catch (std::exception &e){};
-	try
-	{
-		temp = dynamic_cast<B&>(p);
-		(void)temp;
-		std::cout << "reference B" << std::endl;
-	}
-	catch (std::exception &e){};
+	bool isCorrect = false;
 
 	try
 	{
-		temp = dynamic_cast<C&>(p);
-		(void)temp;
-		std::cout << "reference C" << std::endl;
+		(void)dynamic_cast<A&>(p);
+		std::cout << "reference A" << std::endl;
+		isCorrect = true;
 	}
-	catch (std::exception &e)
+	catch (std::exception &e){};
+	try
 	{
-		std::cout << "reference not known" << std::endl;
+		(void)dynamic_cast<B&>(p);
+		std::cout << "reference B" << std::endl;
+		isCorrect = true;
 	}
-	
+	catch (std::exception &e){};
+	try
+	{
+		(void)dynamic_cast<C&>(p);
+		std::cout << "reference C" << std::endl;
+		isCorrect = true;
+	}
+	catch (std::exception &e){};
+	if (!isCorrect)
+	{
+		std::cout << "Type: Unknown" << std::endl;
+	}
 
 }
