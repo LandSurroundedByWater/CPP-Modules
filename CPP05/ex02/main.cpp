@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 18:50:18 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 09:18:02 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ int main()
 		
 		Bureaucrat bigBoss("Timo", 2);
 		Bureaucrat smallBoss("Jack", 146);
-		
+	
 		std::cout << smallBoss.getName() << ", grade " << smallBoss.getGrade() << ". " << std::endl;
 		try {
-			//create a form
+			std::cout << "\nCREATE FORM\n" << std::endl;
 			ShrubberyCreationForm form1("Home");
 
 
-			//sign the form
+			std::cout << "\nSIGN FORM\ncd" << std::endl;
 			std::cout << form1 << std::endl;
 			try{
-				form1.signForm(smallBoss);
+				form1.beSigned(smallBoss);
 			}
 			catch (const std::exception &e) {
 			std::cerr << e.what() << '\n';
@@ -47,7 +47,7 @@ int main()
 			try {
 				smallBoss.increaseGrade();
 				std::cout << smallBoss << std::endl;
-				form1.signForm(smallBoss);
+				form1.beSigned(smallBoss);
 			}
 			catch (const std::exception &e) {
 			std::cerr << e.what() << '\n';
@@ -55,13 +55,14 @@ int main()
 			try {
 				smallBoss.increaseGrade();
 				std::cout << smallBoss << std::endl;
-				form1.signForm(smallBoss);
+				form1.beSigned(smallBoss);
 			}
 			catch (const std::exception &e) {
 			std::cerr << e.what() << '\n';
 			}
 
-			// Execute the form
+			
+			std::cout << "\nEXECUTE  FORM\n" << std::endl;
 			try {
 				form1.execute(smallBoss);
 			}
@@ -106,7 +107,7 @@ int main()
 
 			std::cout << "SIGN THE FORM" << std::endl;
 			try{
-				form2.signForm(smallBoss);
+				form2.beSigned(smallBoss);
 			}
 			catch (const std::exception &e) {
 			std::cerr << e.what() << '\n';
@@ -115,7 +116,7 @@ int main()
 			try {
 				smallBoss.increaseGrade();
 				std::cout << smallBoss << std::endl;
-				form2.signForm(smallBoss);
+				form2.beSigned(smallBoss);
 			}
 			catch (const std::exception &e) {
 			std::cerr << e.what() << '\n';
@@ -124,7 +125,7 @@ int main()
 			try {
 				smallBoss.increaseGrade();
 				std::cout << smallBoss << std::endl;
-				form2.signForm(smallBoss);
+				form2.beSigned(smallBoss);
 			}
 			catch (const std::exception &e) {
 			std::cerr << e.what() << '\n';
@@ -157,7 +158,7 @@ int main()
 
 			
 			std::cout << "SIGN AGAIN" << std::endl;
-			form2.signForm(smallBoss);
+			form2.beSigned(smallBoss);
 
 			std::cout << "EXECUTE AGAIN" << std::endl;	
 			std::cout << std::endl;	
@@ -226,7 +227,7 @@ int main()
 			
 			std::cout << "SIGN THE FORM" << std::endl;
 				
-			form2.signForm(smallBoss);
+			form2.beSigned(smallBoss);
 	
 			
 			try {

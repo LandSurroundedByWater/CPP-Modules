@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 20:48:37 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 11:01:29 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int main()
 	AForm* robo;
 	AForm* pardon;
 	AForm* unknown;
+	Bureaucrat* bigBoss = nullptr;
+	Bureaucrat* smallBoss = nullptr;
 
+
+	try{
 	shub = freshmanIntern.makeForm("Shrubbery Creation", "Cabin");
 	std::cout << *shub << "\n";
 	robo = freshmanIntern.makeForm("Robotomy Request", "Bender");
@@ -32,15 +36,28 @@ int main()
 	pardon = freshmanIntern.makeForm("Presidential Pardon", "Hibbelibob Beeblebub");
 	std::cout << *pardon << "\n";
 	unknown = freshmanIntern.makeForm("wrong form name", "Bob");
-	if (unknown != nullptr)
-		std::cout << *unknown << "\n";
+	}
+	catch (const std::exception &e) {
+		std::cerr << e.what() << '\n';
+	}
 	
-	Bureaucrat bigBoss("Timo", 6);
-	Bureaucrat smallBoss("Jack", 34);
-
+	
+	std::cout << std::endl;
 	try{
-		shub->signForm(smallBoss);
-		shub->execute(smallBoss);
+		bigBoss = new Bureaucrat("Timo", 6);
+		smallBoss = new Bureaucrat("Jack", 34);
+	}
+	catch (const std::exception &e) {
+		std::cerr << e.what() << '\n';
+		     delete shub;
+        delete robo;
+        delete pardon;
+        return 1;
+	}
+	
+	try{
+		shub->beSigned(*smallBoss);
+		shub->execute(*smallBoss);
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << '\n';
@@ -48,8 +65,8 @@ int main()
 
 	try
 	{
-		robo->signForm(smallBoss);
-		robo->execute(bigBoss);
+		robo->beSigned(*smallBoss);
+		robo->execute(*bigBoss);
 	}
 	catch(const std::exception& e)
 	{
@@ -57,26 +74,26 @@ int main()
 	}
 	
 	try{
-		pardon->signForm(bigBoss);
-		pardon->execute(bigBoss);
+		pardon->beSigned(*bigBoss);
+		pardon->execute(*bigBoss);
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << '\n';
 	}
 	
-	bigBoss.increaseGrade();
+	bigBoss->increaseGrade();
 		
 	try{
-		pardon->execute(bigBoss);
+		pardon->execute(*bigBoss);
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << '\n';
 	}
 
+	std::cout << "END" << std::endl;
 	delete shub;
 	delete robo;
 	delete pardon;
-	delete unknown;
 	return 0;
 }
 

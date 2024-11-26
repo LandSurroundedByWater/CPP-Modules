@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:37:58 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/21 09:11:19 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 08:14:03 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ public:
 	int getGrade() const;
 	void increaseGrade();
 	void decreaseGrade();
+	
+	bool signForm(int gradeToSign, std::string formName);
 
 private:
 	std::string _name;

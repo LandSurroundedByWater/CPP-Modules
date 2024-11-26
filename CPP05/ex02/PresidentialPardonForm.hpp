@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:35:53 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 18:41:47 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 07:46:39 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ public:
     const std::string getTarget() const;
 
     void execute(Bureaucrat const & executor) const override;
-
 
 protected:
     std::string _target;

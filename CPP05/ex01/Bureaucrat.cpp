@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:37:47 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 10:37:50 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 08:08:03 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,18 @@ void Bureaucrat::checkGrade(const Bureaucrat& check){
 		throw GradeTooHighException();
 	} else if (check._grade > 150) {
 		throw GradeTooLowException();
+	}
+}
+
+bool Bureaucrat::signForm(int gradeToSign, std::string formName) {
+
+	if (getGrade() < gradeToSign) {
+		std::cout << getName() << " signs " << formName << std::endl;
+		return(true);
+	}
+	else {
+		std::cout << getName() << " cannot sign " << formName << " because his grade is too low" << std::endl;
+		return(false);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:36:02 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 18:37:02 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 07:21:28 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	std::cout << "File created: " << _target << "_shrubbery" << std::endl;
 	std::cout << "Form signed by: " << this->getSignedBy() << std::endl;
 	std::cout << "Executor: " << executor.getName() << std::endl;
-
 }
 
 std::ostream &operator<<(std::ostream &out, const ShrubberyCreationForm &form) {
-    // Call the base class operator<<
     out << static_cast<const AForm&>(form);
-    // Append the derived class-specific attribute
     out << "Target: " << form.getTarget() << std::endl;
     return out;
 }

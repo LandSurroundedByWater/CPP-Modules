@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:39:42 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 18:34:35 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 08:18:58 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,21 +75,18 @@ int AForm::getGradeRequided() const {return _gradeReguiredToExecute;}
 
 //----------------------------------------------
 
-void AForm::signForm(Bureaucrat& bgrat) {
+
+
+
+void AForm::beSigned(Bureaucrat& bgrat) {
 	if (!_isSigned) {
-		if (bgrat.getGrade() <= _gradeToSign) {
+		if (bgrat.signForm(getGrade(), getName())) {
 			setIsSigned(true);
-			std::cout << bgrat.getName() << " signs " << _name << std::endl;
+			_signedBy = bgrat.getName();
 		}
-		else {
-			std::cout << bgrat.getName() << ": "; 
-			throw GradeTooLowException();
-		}
-		setIsSigned(true);
-		setSignedBy(bgrat.getName());
 	}
 	else {
-		throw FormAlreadySignedException();
+		std::cout << bgrat.getName() << " cannot sign " << _name << " because the form is already signed" << std::endl;
 	}
 }
 

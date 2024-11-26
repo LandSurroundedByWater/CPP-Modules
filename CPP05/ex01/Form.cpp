@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:38:08 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 10:38:11 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 08:11:51 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Form::Form() : _name("DefaultForm"),
 	_isSigned(false),
 	_gradeToSign(150),
 	_gradeReguiredToExecute(1) {
-		_signedBy = "No one";
+		_signedBy = "Unsigned";
 	}
 
 Form::Form(std::string name, bool isSigned, int grade, int gradeRequired) :
@@ -24,7 +24,7 @@ Form::Form(std::string name, bool isSigned, int grade, int gradeRequired) :
 	_isSigned(isSigned),
 	_gradeToSign(grade),
 	_gradeReguiredToExecute(gradeRequired) {
-		_signedBy = "No one";
+		_signedBy = "Unsigned";
 		checkGrade(*this);
 	}
 
@@ -71,17 +71,12 @@ int Form::getGradeRequided() const {return _gradeReguiredToExecute;}
 
 //----------------------------------------------
 
-void Form::signForm(Bureaucrat& bgrat) {
+void Form::beSigned(Bureaucrat& bgrat) {
 	if (!_isSigned) {
-		if (bgrat.getGrade() < _gradeToSign) {
+		if (bgrat.signForm(getGrade(), getName())) {
 			setIsSigned(true);
-			std::cout << bgrat.getName() << " signs " << _name << std::endl;
+			_signedBy = bgrat.getName();
 		}
-		else {
-			std::cout << bgrat.getName() << " cannot sign " << _name << " because his grade is too low" << std::endl;
-		}
-		_isSigned = true;
-		_signedBy = bgrat.getName();
 	}
 	else {
 		std::cout << bgrat.getName() << " cannot sign " << _name << " because the form is already signed" << std::endl;

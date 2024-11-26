@@ -6,12 +6,12 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:35:53 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 18:42:40 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 07:19:37 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RobotomyRequestForm_HPP
-#define RobotomyRequestForm_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/15 17:00:03 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 08:13:20 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int main() 
 {
+	std::cout << std::endl;
+	std::cout <<  "Declaration of `boss` and `bigBossTimo` on the stack" << std::endl;
 
-
-	// Declaration of `boss` and `bigBossTimo` on the stack
 	try {
 		
 		Bureaucrat boss("Boss", 100);
@@ -36,8 +36,8 @@ int main()
 			form0.setIsSigned(false);
 			std::cout << form0 << std::endl;
 
-			form0.signForm(boss);
-			form1.signForm(bigBossTimo);
+			form0.beSigned(boss);
+			form1.beSigned(bigBossTimo);
 		}
 		catch (const std::exception &e) {
 			std::cerr << e.what() << '\n';
@@ -49,8 +49,10 @@ int main()
 		std::exit(EXIT_FAILURE);
 	}
 
-	
-	// Declaration of `boss2` and `bigBossTimo2` on the heap
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << "Declaration of `boss2` and `bigBossTimo2` on the heap" << std::endl;
+
 	Bureaucrat *boss2 = nullptr;
 	Bureaucrat *bigBossTimo2 = nullptr;
 
@@ -74,9 +76,9 @@ int main()
 		form3.setIsSigned(false);
 		std::cout << form3 << std::endl;
 
-		form3.signForm(*boss2);
-		form4.signForm(*bigBossTimo2);
-		form4.signForm(*bigBossTimo2);
+		form3.beSigned(*boss2);
+		form4.beSigned(*bigBossTimo2);
+		form4.beSigned(*bigBossTimo2);
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << '\n';
@@ -84,7 +86,5 @@ int main()
 	}
 	delete boss2;
 	delete bigBossTimo2;
-
-		
 }
 

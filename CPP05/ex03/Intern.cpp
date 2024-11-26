@@ -39,15 +39,24 @@ AForm* Intern::makeForm(std::string formToCreate, std::string target) {
 	}
 	switch (i) {
 		case 0:
+		{
+			std::cout << "Intern creates ShrubberyCreationForm " << target << std::endl;
 			return new ShrubberyCreationForm(target);
+			
+		}
 		case 1:
+		{
+			std::cout << "Intern creates RobotomyRequestForm " << target << std::endl;
 			return new RobotomyRequestForm(target);
+		}
 		case 2:
+		{
+			std::cout << "Intern creates PresidentialPardonForm " << target << std::endl;
 			return new PresidentialPardonForm(target);
+		}
 		default:
 		{
-			std::cout << "Not that kind of form available" << std::endl;
-			return nullptr;
+			throw std::invalid_argument("Error: Form name '" + formToCreate + "' is invalid.");
 		}
 	}
 }

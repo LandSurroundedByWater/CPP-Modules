@@ -6,12 +6,12 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:36:10 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 18:37:18 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 07:20:07 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ShrubberyCreationForm_HPP
-#define ShrubberyCreationForm_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"

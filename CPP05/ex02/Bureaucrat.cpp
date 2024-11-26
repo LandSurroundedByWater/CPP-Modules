@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:36:57 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 10:36:59 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 08:14:56 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 		this->_grade = other._grade;
 	}
 	return *this;
+}
+
+bool Bureaucrat::signForm(int gradeToSign, std::string formName) {
+
+	if (getGrade() < gradeToSign) {
+		std::cout << getName() << " signs " << formName << std::endl;
+		return(true);
+	}
+	else {
+		std::cout << getName() << " cannot sign " << formName << " because his grade is too low" << std::endl;
+		return(false);
+	}
 }
 
 Bureaucrat::~Bureaucrat() {}

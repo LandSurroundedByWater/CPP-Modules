@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:38:52 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/21 09:09:16 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 07:16:22 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ private:
         public:
             const char  *what() const noexcept override;
     };
-   
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bgrat);

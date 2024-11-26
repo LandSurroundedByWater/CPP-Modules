@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:38:28 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 10:38:30 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 08:14:08 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ public:
 	int getGrade() const;
 	void setGradeRequided(int value);
 	int getGradeRequided() const;
-	void signForm(Bureaucrat& bgrat);
+	void beSigned(Bureaucrat& bgrat);
 
 	class GradeTooHighException : public std::exception
 	{
