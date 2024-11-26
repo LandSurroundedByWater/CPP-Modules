@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 07:30:48 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 14:00:43 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int main()
 		std::cerr << e.what() << '\n';
 	}
 
-	//-----------Using exit in error handling
+
 	try
 	{
 		Bureaucrat boss("Boss", 060);
@@ -73,19 +73,6 @@ int main()
 	catch (std::exception & e)
 	{
 		std::cerr << e.what() << '\n';
-		std::exit(EXIT_FAILURE);
-	}
-	///----------------So this is not done
-
-	try
-	{
-		Bureaucrat boss("Boss2", 1);
-		Bureaucrat bigboss("Timo2", 100);
-	}
-	catch (std::exception & e)
-	{
-		std::cerr << e.what() << '\n';
-		std::exit(EXIT_FAILURE);
 	}
 	return 0;
 }

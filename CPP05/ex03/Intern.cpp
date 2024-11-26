@@ -56,7 +56,8 @@ AForm* Intern::makeForm(std::string formToCreate, std::string target) {
 		}
 		default:
 		{
-			throw std::invalid_argument("Error: Form name '" + formToCreate + "' is invalid.");
+			std::cerr << "Error: Form name '" << formToCreate << "' is invalid." << std::endl;
+            return nullptr;;
 		}
 	}
 }

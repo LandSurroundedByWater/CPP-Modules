@@ -6,14 +6,14 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:38:44 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 10:38:45 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/26 14:01:42 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
-	std::cout << " Defaut Bureaucrat " << _name << " has no real name yet." << std::endl;
+	std::cout << "Defaut Bureaucrat " << _name << " has no real name yet." << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) :
