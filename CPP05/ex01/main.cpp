@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 08:13:20 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/27 12:16:57 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int main() 
 {
 	std::cout << std::endl;
-	std::cout <<  "Declaration of `boss` and `bigBossTimo` on the stack" << std::endl;
+	std::cout <<  "Declaration of `boss` and `bigBossTimo` on the stack\n" << std::endl;
 
 	try {
 		
@@ -41,17 +41,17 @@ int main()
 		}
 		catch (const std::exception &e) {
 			std::cerr << e.what() << '\n';
-			std::exit(EXIT_FAILURE);
 		}
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << '\n';
-		std::exit(EXIT_FAILURE);
 	}
+
+	
 
 	std::cout << std::endl;
 	std::cout << std::endl;
-	std::cout << "Declaration of `boss2` and `bigBossTimo2` on the heap" << std::endl;
+	std::cout << "Declaration of `boss2` and `bigBossTimo2` on the heap\n" << std::endl;
 
 	Bureaucrat *boss2 = nullptr;
 	Bureaucrat *bigBossTimo2 = nullptr;
@@ -62,7 +62,6 @@ int main()
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << '\n';
-		std::exit(EXIT_FAILURE);
 	}
 
 	try {
@@ -82,8 +81,9 @@ int main()
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << '\n';
-		std::exit(EXIT_FAILURE);
 	}
+
+	std::cout << "END OF TESTS" << std::endl;
 	delete boss2;
 	delete bigBossTimo2;
 }

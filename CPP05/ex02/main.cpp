@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 09:18:02 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/27 12:21:56 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int main()
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << '\n';
-		std::exit(EXIT_FAILURE);
 	}
 
 // TESTS FOR ROBOTOMY REQUEST FORM
@@ -194,7 +193,6 @@ int main()
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << '\n';
-		std::exit(EXIT_FAILURE);
 	}
 	
 
@@ -226,8 +224,21 @@ int main()
 			smallBoss.setGrade(25);
 			
 			std::cout << "SIGN THE FORM" << std::endl;
-				
-			form2.beSigned(smallBoss);
+			try
+			{
+				form2.beSigned(smallBoss); //cannot do it 
+			}
+			catch (const std::exception& e) {
+			std::cerr << e.what() << '\n';
+			}
+
+			try
+			{
+				form2.beSigned(bigBoss);
+			}
+			catch (const std::exception& e) {
+			std::cerr << e.what() << '\n';
+			}
 	
 			
 			try {
@@ -252,9 +263,8 @@ int main()
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << '\n';
-		std::exit(EXIT_FAILURE);
 	}
-
+	std::cout << "THE END" << std::endl;
 		
 }
 

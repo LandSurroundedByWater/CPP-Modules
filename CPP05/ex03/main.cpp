@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 13:53:09 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/27 12:11:23 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main()
 	Bureaucrat* smallBoss = nullptr;
 
 
-
+	try{
 	shub = freshmanIntern.makeForm("Shrubbery Creation", "Cabin");
 	std::cout << *shub << "\n";
 	robo = freshmanIntern.makeForm("Robotomy Request", "Bender");
@@ -36,8 +36,10 @@ int main()
 	pardon = freshmanIntern.makeForm("Presidential Pardon", "Hibbelibob Beeblebub");
 	std::cout << *pardon << "\n";
 	unknown = freshmanIntern.makeForm("wrong form name", "Bob");
-	if (unknown == nullptr)
-		std::cerr << "Form creation failed for 'wrong form name'\n";
+	}
+	catch (const std::exception &e) {
+		std::cerr << e.what() << '\n';
+	}
 	
 	
 	std::cout << std::endl;
@@ -47,12 +49,10 @@ int main()
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << '\n';
-		delete shub;
-		delete robo;
-		delete pardon;
-		delete bigBoss;
-		delete smallBoss;
-		return 1;
+		     delete shub;
+        delete robo;
+        delete pardon;
+        return 1;
 	}
 	
 	try{
