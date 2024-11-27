@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:59:14 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 16:38:15 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/27 09:26:47 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <limits>
+#include <utility>
 
 class Span
 {
@@ -25,10 +26,16 @@ class Span
 		unsigned int _n;
 		std::vector<int> _v;
 	public:
+
+		Span();
 		Span(unsigned int n);
-		Span(Span const &src);
+		//Span(const std::vector<int>& v);
+		//Span(std::vector<int>&& v);
+		Span(const Span& other);
+		Span& operator=(const Span& other);
 		~Span();
-		Span &operator=(Span const &src);
+	
+		void addRandomNumbers(unsigned int n, int min, int max);
 		void addNumber(int n);
 		unsigned int shortestSpan();
 		unsigned int longestSpan();

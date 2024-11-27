@@ -1,16 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   span.cpp                                           :+:      :+:    :+:   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:35:14 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 16:53:39 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/27 09:29:54 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+
+Span::Span() {}
+
+Span::Span(unsigned int n) :
+	_n(n) {}
+
+/*Span::Span(const std::vector<int>& v) :
+	_n(v.size()),
+	_v(v) {}
+
+Span::Span(std::vector<int>&& v) :
+	_n(v.size()),
+	_v(std::move(v)) {}
+*/
+Span::Span(const Span& other) :
+	_n(other._n) {}
+
+Span& Span::operator=(const Span& other) {
+	if (this != &other) {
+		this->_n = other._n;
+	}
+	return *this;
+}
+
+
+void Span::addNumber(int n) {
+	if (_v.size() >= _n) {
+		throw std::overflow_error("No more numbers can be added.");
+	}
+	_v.push_back(n);
+}	
+
+void Span::addRandomNumbers(unsigned int n, int min, int max) {
+	if (_v.size() + n > _n) {
+		throw std::overflow_error("No more numbers can be added.");
+	}
+	for (unsigned int i = 0; i < n; ++i) {
+		_v.push_back(rand() % (max - min + 1) + min);
+	}
+}
+
+Span::~Span() {}
 
 unsigned int Span::shortestSpan() {
 	if (_v.size() < 2) {
@@ -28,7 +70,6 @@ unsigned int Span::shortestSpan() {
 	} 
 	return minSpan;
 }
-
 
 unsigned int Span::longestSpan() {
 	if (_v.size() < 2) {

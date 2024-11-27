@@ -6,72 +6,59 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/22 09:25:15 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/27 09:37:03 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "easyfind.hpp"
+#include "Span.hpp"
 #include <vector>
 #include <deque>
 
 int main()
 {
-    std::vector<int> vec = {1, 2, 3, 4, 5};
-	std::deque<int> deq = {11, 12, 13, 14, 15};
+	
+	Span span1 = Span(5);
 
-    try
-    {
-		std::cout << "Trying to find 3 from vec\n";
-        auto it = easyfind(vec, 3);
-        std::cout << "Found: " << *it << '\n';
-		std::cout << "Trying to find 10 from vec\n";
-        it = easyfind(vec, 10);
-        std::cout << "Found: " << *it << '\n';
-    }
-    catch (const std::runtime_error &e)
-    {
-        std::cerr << "Exception: " << e.what() << '\n';
-    }
 	try
 	{
-		std::cout << "Add 10 to end of vec\n";
-		vec.push_back(10);
-		std::cout << "Trying to find 10 from vec\n";
-		auto it = easyfind(vec, 10);
-		std::cout << "Found: " << *it << '\n';
+		span1.addNumber(5);
+		span1.addNumber(3);
+		span1.addNumber(17);
+		span1.addNumber(9);
+		span1.addNumber(11);
+		span1.addNumber(13);
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Exception: " << e.what() << '\n';
+		std::cerr << e.what() << '\n';
 	}
-	try{
-		std::cout << "Trying to find 13 from deq\n";
-		auto it = easyfind(deq, 13);
-		std::cout << "Found: " << *it << '\n';
+
+	Span span2 = Span(10000);
+
+	try
+	{
+		span2.addNumber(5);
+		std::cout << "Span2 shortest span: " << span2.shortestSpan() << std::endl;
+		std::cout << "Span2 longest span: " << span2.longestSpan() << std::endl;
+
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Exception: " << e.what() << '\n';
+		std::cerr << e.what() << '\n';
 	}
-	try{
-		std::cout << "Trying to find 20 from deq\n";
-		auto it = easyfind(deq, 20);
-		std::cout << "Found: " << *it << '\n';
+	try
+	{
+		span2.addRandomNumbers(10, -10000, 10000);
+		std::cout << "Span2 shortest span: " << span2.shortestSpan() << std::endl;
+		std::cout << "Span2 longest span: " << span2.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Exception: " << e.what() << '\n';
+		std::cerr << e.what() << '\n';
 	}
-	try{
-		std::cout << "Add 20 to front of deq\n";
-		deq.push_front(20);
-		std::cout << "Trying to find 20 from deq\n";
-		auto it = easyfind(deq, 20);
-		std::cout << "Found: " << *it << '\n';
-	}
-	catch(const std::exception& e){
-		std::cerr << "Exception: " << e.what() << '\n';
-	}
-    return 0;
+
+	std::cout << "Span1 shortest span: " << span1.shortestSpan() << std::endl;
+	std::cout << "Span1 longest span: " << span1.longestSpan() << std::endl;	
+	
 }
