@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:37:47 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 08:08:03 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/27 13:30:38 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ int Bureaucrat::getGrade() const {
 void Bureaucrat::increaseGrade()
 {
 	_grade--;
+	checkGrade(*this);
+}
+
+void Bureaucrat::decreaseGrade()
+{
+	_grade++;
 	checkGrade(*this);
 }
 			

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/27 12:22:25 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/27 13:34:12 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,20 @@ int main()
 		Bureaucrat timo("Timo", 3);
 		std::cout << timo << std::endl;
 		timo.increaseGrade();
+		std::cout << timo << std::endl;
+		timo.decreaseGrade();
+		std::cout << timo << std::endl;
 		timo.increaseGrade();
 		std::cout << timo << std::endl;
 		timo.increaseGrade();
-		
+		std::cout << timo << std::endl;
+		timo.increaseGrade();
+		std::cout << timo << std::endl;
+		timo.increaseGrade();
+		std::cout << timo << std::endl;
+		timo.increaseGrade();
+		std::cout << timo << std::endl;
+		timo.increaseGrade();
 		std::cout << timo << std::endl;
 	}
 	catch(const std::exception& e)
