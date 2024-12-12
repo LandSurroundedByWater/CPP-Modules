@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:11:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/27 13:34:12 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/29 08:49:34 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 
 int main() 
 {
-	std::cout << "Try Default" << std::endl;
-	try
-	{
-		Bureaucrat deffe;
-		std::cout << deffe << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-
 	std::cout << "Try Jack with grade 220" << std::endl;
 	try
 	{
@@ -75,10 +64,20 @@ int main()
 		std::cerr << e.what() << '\n';
 	}
 
+	std::cout << std::endl;
+	std::cout << "BUREAUCRATS, WHICH GRADE IS OUT OF SCOPE" << std::endl;
 	try
 	{
-		Bureaucrat boss("Boss", 060);
-		Bureaucrat bigboss("Timo", 200);
+		Bureaucrat boss("Boss", 0);
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		Bureaucrat bigboss("Timo", 151);
 	}
 	catch (std::exception & e)
 	{

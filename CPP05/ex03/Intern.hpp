@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:36:30 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/17 20:25:51 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/12/04 12:26:15 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-#include <iostream>
 
 class Intern {
 public:
-	Intern(void);
+	Intern();
 	Intern(const Intern& other);
 	Intern& operator=(const Intern& other);
 	~Intern();

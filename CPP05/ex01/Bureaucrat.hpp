@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:37:58 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 08:14:03 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/29 09:08:55 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,15 @@ public:
 	Bureaucrat& operator=(const Bureaucrat& other);
 	~Bureaucrat();
 
-
-	void setName(std::string value);
 	std::string getName() const;
-	void setGrade(int value);
 	int getGrade() const;
 	void increaseGrade();
 	void decreaseGrade();
 	
-	bool signForm(int gradeToSign, std::string formName);
+	void signForm(bool sign, std::string formName);
 
 private:
-	std::string _name;
+	const std::string _name;
 	int _grade;
 
 	void checkGrade(const Bureaucrat& check);

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:35:53 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 07:19:37 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/12/04 12:29:05 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include <fstream> 
+#include <fstream>
+#include <ctime>
+#include <cstdlib>
 
 
 class RobotomyRequestForm : public AForm {
 public:
+    RobotomyRequestForm();
     RobotomyRequestForm(std::string target);
     RobotomyRequestForm(const RobotomyRequestForm& other);
     RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
@@ -31,7 +34,7 @@ public:
     void execute(Bureaucrat const & executor) const override;
 
 
-protected:
+private:
     std::string _target;
 };
 

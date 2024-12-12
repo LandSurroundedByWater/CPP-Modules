@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:36:30 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 08:15:53 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/11/29 09:58:45 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <exception>
 #include <iostream>
 
+class AForm;
+
 class Bureaucrat {
 public:
 	Bureaucrat();
@@ -25,18 +27,16 @@ public:
 	Bureaucrat& operator=(const Bureaucrat& other);
 	~Bureaucrat();
 
-
-	void setName(std::string value);
 	std::string getName() const;
-	void setGrade(int value);
 	int getGrade() const;
 	void increaseGrade();
 	void decreaseGrade();
-
-	bool signForm(int gradeToSign, std::string formName);
+	
+	void signForm(bool sign, std::string formName);
+	void executeForm(AForm const & form) const;
 
 private:
-	std::string _name;
+	const std::string _name;
 	int _grade;
 
 	void checkGrade(const Bureaucrat& check);
@@ -55,3 +55,4 @@ private:
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bgrat);
 
 #endif // Bureaucrat_HPP
+

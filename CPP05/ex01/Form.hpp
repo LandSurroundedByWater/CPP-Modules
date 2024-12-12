@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:38:28 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/26 08:14:08 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/12/10 09:50:46 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,45 +19,43 @@
 #include "Bureaucrat.hpp"
 
 class Form {
-public:
-	Form();
-	Form(std::string name, bool isSigned, int grade, int gradeRequired);
-	Form(const Form& other);
-	Form& operator=(const Form& other);
-	~Form();
+	public:
+		Form();
+		Form(std::string name, int grade, int gradeRequired);
+		Form(const Form& other);
+		Form& operator=(const Form& other);
+		~Form();
 
-	void setName(std::string value);
-	std::string getName() const;
-	void setIsSigned(bool value);
-	bool getIsSigned() const;
-	void setGrade(int value);
-	int getGrade() const;
-	void setGradeRequided(int value);
-	int getGradeRequided() const;
-	void beSigned(Bureaucrat& bgrat);
+		std::string getName() const;
+		void setIsSigned(bool value);
+		bool getIsSigned() const;
+		int getGradeToSign() const;
+		int getGradeRequidedToExecute() const;
+		std::string getSignedBy() const;
+		
+		void beSigned(Bureaucrat& bgrat);
 
-	class GradeTooHighException : public std::exception
-	{
-		public:
-			const char  *what() const noexcept override;
-	};
-	class GradeTooLowException : public std::exception
-	{
-		public:
-			const char  *what() const noexcept override;
-	};
+	private:
+		
+		const std::string _name;
+		std::string _signedBy;
+		bool _isSigned;
+		const int _gradeToSign;
+		const int _gradeReguiredToExecute;
 
-private:
-	
-	std::string _name;
-	std::string _signedBy;
-	bool _isSigned;
-	int _gradeToSign;
-	int _gradeReguiredToExecute;
-
-	void checkGrade(const Form& check);
+		void checkGrade(const Form& check);
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char  *what() const noexcept override;
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char  *what() const noexcept override;
+		};
 };
 
 std::ostream &operator<<(std::ostream &out, const Form &form);
 
-#endif // Form_HPP
+#endif

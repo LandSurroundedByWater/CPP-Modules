@@ -12,7 +12,7 @@
 
 #include "Intern.hpp"
 
-Intern::Intern()  {}
+Intern::Intern() {}
 
 Intern::Intern(const Intern& other) {
 	*this = other;
@@ -42,7 +42,6 @@ AForm* Intern::makeForm(std::string formToCreate, std::string target) {
 		{
 			std::cout << "Intern creates ShrubberyCreationForm " << target << std::endl;
 			return new ShrubberyCreationForm(target);
-			
 		}
 		case 1:
 		{

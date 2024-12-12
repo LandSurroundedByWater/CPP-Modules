@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:38:52 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/27 13:30:06 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/12/04 12:21:04 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,32 @@
 #include <iostream>
 
 class Bureaucrat {
-public:
-    
-    Bureaucrat();
-    Bureaucrat(std::string name, int grade);
-    Bureaucrat(const Bureaucrat& other);
-    Bureaucrat& operator=(const Bureaucrat& other);
-    ~Bureaucrat();
+	public:
+		Bureaucrat();
+		Bureaucrat(std::string name, int grade);
+		Bureaucrat(const Bureaucrat& other);
+		Bureaucrat& operator=(const Bureaucrat& other);
+		~Bureaucrat();
 
-    void setName(std::string value);
-    std::string getName() const;
-    void setGrade(int value);
-    int getGrade() const;
-    void increaseGrade();
-    void decreaseGrade();
-  
+		std::string getName() const;
+		int getGrade() const;
+		void increaseGrade();
+		void decreaseGrade();
 
-private:
-    std::string _name;
-    int _grade;
-    void checkGrade(const Bureaucrat& check);
-    class GradeTooHighException : public std::exception
-    {
-        public:
-            const char  *what() const noexcept override;
-    };
-    class GradeTooLowException : public std::exception
-    {
-        public:
-            const char  *what() const noexcept override;
-    };
+	private:
+		const std::string _name;
+		int _grade;
+		void checkGrade(const Bureaucrat& check);
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char  *what() const noexcept override;
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char  *what() const noexcept override;
+		};
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bgrat);

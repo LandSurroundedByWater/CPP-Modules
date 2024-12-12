@@ -6,58 +6,60 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:37:47 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/27 13:30:38 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/12/04 12:38:50 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
+//----CONSTRUCTORS AND DESTRUCTORS
+
+//- default
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
 	std::cout << " Defaut Bureaucrat " << _name << " has no real name yet." << std::endl;
 }
 
+
+//-	parameters
 Bureaucrat::Bureaucrat(std::string name, int grade) :
 	_name(name),
 	_grade(grade)
-
 {
 	checkGrade(*this);
 	std::cout << "Bureaucrat " << _name << " is working in office" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) {
-	
-	this->_name = other._name;
-	this->_grade = other._grade;
-}
+//-	copy
+Bureaucrat::Bureaucrat(const Bureaucrat& other) :
+	_name(other.getName()), 
+	_grade(other.getGrade()) {
+		checkGrade(*this);
+	}
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
+//- copy assign operator
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
+{
 	if (this != &other) 
 	{
-		this->_name = other._name;
 		this->_grade = other._grade;
 	}
 	return *this;
 }
 
+//- destructor
 Bureaucrat::~Bureaucrat() {}
 
-void Bureaucrat::setName(std::string value) {
-	_name = value;
-}
+//----------GETTERS-------------
 
 std::string Bureaucrat::getName() const {
 	return _name;
 }
 
-void Bureaucrat::setGrade(int value) {
-	_grade = value;
-	checkGrade(*this);
-}
-
 int Bureaucrat::getGrade() const {
 	return _grade;
 }
+
+//-------------MEMBER FUNCTIONNS---------
 
 void Bureaucrat::increaseGrade()
 {
@@ -80,17 +82,16 @@ void Bureaucrat::checkGrade(const Bureaucrat& check){
 	}
 }
 
-bool Bureaucrat::signForm(int gradeToSign, std::string formName) {
-
-	if (getGrade() < gradeToSign) {
+void Bureaucrat::signForm(bool sign, std::string formName) {
+	if (sign) {
 		std::cout << getName() << " signs " << formName << std::endl;
-		return(true);
 	}
 	else {
-		std::cout << getName() << " cannot sign " << formName << " because his grade is too low" << std::endl;
-		return(false);
+		std::cout << getName() << " couldn't sign form " << formName << "because grade is too low" << std::endl;
 	}
 }
+
+//-----------------EXCEPTIONS------------------
 
 const char* Bureaucrat::GradeTooHighException::what() const noexcept {
 	return "Grade is too high!";
@@ -99,6 +100,8 @@ const char* Bureaucrat::GradeTooHighException::what() const noexcept {
 const char* Bureaucrat::GradeTooLowException::what() const noexcept {
 	return "Grade is too low!";
 }
+
+//---------------STREAM OPERATOR---------------
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat& bgrat)
 {
