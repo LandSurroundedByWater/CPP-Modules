@@ -14,9 +14,13 @@
 #define SERIALIZER_HPP
 
 #include <iostream>
+#include <cstdint>
 
 struct Data {
 	int n;
+
+	Data(int x) : n(x) {};
+	Data() : n(0) {};
 };	
 
 class Serializer {
@@ -26,7 +30,7 @@ public:
 	static Data* deserialize(uintptr_t raw);
 
 private:
-	// Constructors
+	
 	Serializer();
 	Serializer(const Serializer& other);
 	Serializer& operator=(const Serializer& other);

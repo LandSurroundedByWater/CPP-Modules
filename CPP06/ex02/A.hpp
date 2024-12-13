@@ -3,7 +3,6 @@
 
 #include "Base.hpp"
 
-#include <string>
 
 class A : public Base {};
 

@@ -19,8 +19,7 @@ Serializer::Serializer(const Serializer& other) {
 }
 
 Serializer& Serializer::operator=(const Serializer& other) {
-    if (this != &other) {
-    }
+    (void) other;
     return *this;
 }
 

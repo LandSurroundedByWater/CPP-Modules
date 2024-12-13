@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/22 09:25:15 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/12/12 10:23:21 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,23 @@ int main()
     try
     {
 		std::cout << "Trying to find 3 from vec\n";
-        auto it = easyfind(vec, 3);
+        std::vector<int>::iterator it = easyfind(vec, 3);  //give type to compiler
         std::cout << "Found: " << *it << '\n';
 		std::cout << "Trying to find 10 from vec\n";
         it = easyfind(vec, 10);
         std::cout << "Found: " << *it << '\n';
     }
-    catch (const std::runtime_error &e)
+    catch (const std::exception &e)
     {
         std::cerr << "Exception: " << e.what() << '\n';
     }
+	
 	try
 	{
 		std::cout << "Add 10 to end of vec\n";
 		vec.push_back(10);
 		std::cout << "Trying to find 10 from vec\n";
-		auto it = easyfind(vec, 10);
+		auto it = easyfind(vec, 10);			//compiler deduces type, takes a little bit more time
 		std::cout << "Found: " << *it << '\n';
 	}
 	catch(const std::exception& e)

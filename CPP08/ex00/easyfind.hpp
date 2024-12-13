@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:30:30 by tsaari            #+#    #+#             */
-/*   Updated: 2024/12/11 11:26:16 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/12/12 10:15:38 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typename T::iterator easyfind(T &container, int value)
 	auto it = std::find(container.begin(), container.end(), value);
 	if (it == container.end())
 	{
-		throw std::runtime_error("Value not found in the container");
+		throw std::out_of_range("Value not found in the container");
 	}
 	return it;
 }

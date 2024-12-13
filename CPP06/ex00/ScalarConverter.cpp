@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 09:24:38 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/29 13:07:57 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/12/12 10:36:59 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter& other) {
 }
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
-	if (this != &other) {
-	}
+	(void) other;
 	return *this;
 }
 
@@ -97,7 +96,7 @@ void printPseudo(const std::string& str)
 			std::cout << "float: " << std::numeric_limits<float>::infinity() << "f" << std::endl;
 			std::cout << "double: " << std::numeric_limits<double>::infinity() << std::endl;
 	}
-	if (str == "nan")
+	if (str == "nan" || str == "nanf")
 	{
 		std::cout << "float: " << std::numeric_limits<float>::quiet_NaN() << "f" << std::endl;
 		std::cout << "double: " << std::numeric_limits<double>::quiet_NaN() << std::endl;
@@ -107,7 +106,7 @@ void printPseudo(const std::string& str)
 void ScalarConverter::convert(const std::string& str) {
 
 
-		if (str == "-inf" || str == "+inf" || str == "inf" || str == "inff" || str == "nan" || str == "-inff" || str == "+inff")
+		if (str == "-inf" || str == "+inf" || str == "inf" || str == "inff" || str == "nan" || str == "nanf" || str == "-inff" || str == "+inff")
 		{
 			printPseudo(str);
 		}
@@ -134,10 +133,10 @@ void ScalarConverter::convert(const std::string& str) {
 							if (isprint(num)) {
 								std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
 							} else {
-								std::cout << "non-displayable" << std::endl;
+								std::cout << "Non displayable" << std::endl;
 							}
 						} else {
-							std::cout << "invalid character" << std::endl;
+							std::cout << "Not in range of ASCII" << std::endl;
 						}
 						std::cout << "int: " << num << std::endl;
 						std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(num) << "f" << std::endl;
@@ -179,7 +178,8 @@ void ScalarConverter::convert(const std::string& str) {
 					try
 					{
 						double dnum = std::stod(str);
-						std::cout << "char: ";
+						std::cout << "char: ";1
+						
 						if (dnum >= 0 && dnum <= 255) {
 							if (isprint(dnum)) {
 								std::cout << "'" << static_cast<char>(dnum) << "'" << std::endl;

@@ -3,8 +3,6 @@
 
 #include "Base.hpp"
 
-#include <string>
-
 class C : public Base {};
 
 #endif // C_HPP

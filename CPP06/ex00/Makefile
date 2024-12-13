@@ -6,14 +6,14 @@
 #    By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 09:11:55 by tsaari            #+#    #+#              #
-#    Updated: 2024/11/29 12:30:30 by tsaari           ###   ########.fr        #
+#    Updated: 2024/12/12 12:05:07 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = convert
+NAME = converter
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11 -g -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = main.cpp ScalarConverter.cpp
 OBJS = $(SRCS:.cpp=.o)

@@ -6,11 +6,11 @@
 #    By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 09:11:55 by tsaari            #+#    #+#              #
-#    Updated: 2024/11/18 18:51:38 by tsaari           ###   ########.fr        #
+#    Updated: 2024/12/12 12:05:17 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = convert
+NAME = serializer
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++11

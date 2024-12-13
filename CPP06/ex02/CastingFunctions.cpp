@@ -5,7 +5,9 @@
 #include "C.hpp"
 
 #include <iostream>
-
+#include <string>
+#include <ctime>
+#include <cstdlib>
 
 Base* generate()
 {

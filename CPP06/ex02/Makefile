@@ -6,11 +6,11 @@
 #    By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 09:11:55 by tsaari            #+#    #+#              #
-#    Updated: 2024/11/18 20:59:18 by tsaari           ###   ########.fr        #
+#    Updated: 2024/12/12 13:14:57 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = convert
+NAME = identify
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++11
