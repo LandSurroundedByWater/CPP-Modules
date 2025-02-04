@@ -6,74 +6,80 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/27 12:46:15 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/01/31 09:22:58 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MutantStack.hpp"
+#include <list>
 #include <iostream>
-#include "Span.hpp"
-#include <vector>
-#include <deque>
-#include <cstdlib>
-#include <ctime>
 
 int main()
 {
-	srand(time(NULL));
-	Span span1 = Span(5);
+	
+	MutantStack<int> mstack;
+	mstack.push(5);
+	mstack.push(17);
+	std::cout << "top: " << mstack.top() << std::endl;
+	std::cout << "remove last one" << std::endl;
+	mstack.pop();
+	std::cout << "size: " << mstack.size() << std::endl;
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	std::cout << "top: " << mstack.top() << std::endl;
+	std::cout << "size: " << mstack.size() << std::endl;
+	//[...]
+	mstack.push(0);
 
-	try
+	std::cout << "Iterate and print all: ";
+	
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
 	{
-		span1.addNumber(5);
-		span1.addNumber(3);
-		span1.addNumber(17);
-		span1.addNumber(9);
-		span1.addNumber(11);
-		span1.addNumber(13);
+		if (++it != ite)
+			std::cout << *it << ", ";
+		else
+			std::cout << *it << std::endl;
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	std::stack<int> s(mstack);
 
-	std::cout << "Span1 shortest span: " << span1.shortestSpan() << std::endl;
-	std::cout << "Span1 longest span: " << span1.longestSpan() << std::endl;	
 
-	Span span2 = Span(16);
-	Span span3 = Span(16000);
-	try
-	{
-		span2.addNumber(5);
-		std::cout << "Span2 shortest span: " << span2.shortestSpan() << std::endl;
-		std::cout << "Span2 longest span: " << span2.longestSpan() << std::endl;
 
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		span2.addRandomNumbers(10, -10000, 10000);
-		std::cout << "Span2 shortest span: " << span2.shortestSpan() << std::endl;
-		std::cout << "Span2 longest span: " << span2.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	std::cout << "Testing with std::list" << std::endl;
+	
+	std::list<int> lst;
+	lst.push_back(5);
+	lst.push_back(17);
+	std::cout << "top: " << lst.back() << std::endl;
+	std::cout << "remove last one" << std::endl;
+	lst.pop_back();
+	std::cout << "size: " << lst.size() << std::endl;
+	lst.push_back(3);
+	lst.push_back(5);
+	lst.push_back(737);
+	std::cout << "top: " << lst.back() << std::endl;
+	std::cout << "size: " << lst.size() << std::endl;
+	//[...]
+	lst.push_back(0);
 
-	try
-	{
-		span3.addRandomNumbers(15000, -15000, 10000);
-		std::cout << "Span3 shortest span: " << span3.shortestSpan() << std::endl;
-		std::cout << "Span3 longest span: " << span3.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	std::cout << "Iterate and print all: ";
+	
+	std::list<int>::iterator itlst = lst.begin();
+	std::list<int>::iterator itelst = lst.end();
 
+	while (itlst != itelst)
+	{
+		if (++itlst != itelst)
+			std::cout << *itlst << ", ";
+		else
+			std::cout << *itlst << std::endl;
+	}
 
 	
+	return 0;
+		
 }
