@@ -6,14 +6,14 @@
 #    By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 09:11:55 by tsaari            #+#    #+#              #
-#    Updated: 2024/11/19 12:34:02 by tsaari           ###   ########.fr        #
+#    Updated: 2025/02/05 11:13:57 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = templates
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)

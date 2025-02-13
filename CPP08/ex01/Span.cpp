@@ -6,25 +6,24 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:35:14 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/27 09:29:54 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/07 09:26:01 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <numeric>
+#include <algorithm>
+#include <stdexcept>
+#include <iostream>
+#include <limits>
+#include <utility>
+#include <iterator>
 
 Span::Span() {}
 
 Span::Span(unsigned int n) :
 	_n(n) {}
 
-/*Span::Span(const std::vector<int>& v) :
-	_n(v.size()),
-	_v(v) {}
-
-Span::Span(std::vector<int>&& v) :
-	_n(v.size()),
-	_v(std::move(v)) {}
-*/
 Span::Span(const Span& other) :
 	_n(other._n) {}
 
@@ -35,24 +34,32 @@ Span& Span::operator=(const Span& other) {
 	return *this;
 }
 
+Span::~Span() {}
 
 void Span::addNumber(int n) {
-	if (_v.size() >= _n) {
+	if (_v.size() > _n) {
 		throw std::overflow_error("No more numbers can be added.");
 	}
 	_v.push_back(n);
-}	
+}
 
 void Span::addRandomNumbers(unsigned int n, int min, int max) {
-	if (_v.size() + n > _n) {
-		throw std::overflow_error("No more numbers can be added.");
-	}
 	for (unsigned int i = 0; i < n; ++i) {
-		_v.push_back(rand() % (max - min + 1) + min);
+		addNumber(rand() % (max - min + 1) + min);
 	}
 }
 
-Span::~Span() {}
+void Span::addUniqueRandomNumbers(unsigned int n, int min, int max) {
+	for (unsigned int i = 0; i < n; ++i) {
+		int num = rand() % (max - min + 1) + min;
+		if (find(_v.begin(), _v.end(), num) != _v.end()) {
+			--i;
+			continue;
+		}
+		else
+		addNumber(num);
+	}
+}
 
 unsigned int Span::shortestSpan() {
 	if (_v.size() < 2) {
@@ -61,13 +68,10 @@ unsigned int Span::shortestSpan() {
 	std::vector<int> sorted = _v;
 	std::sort(sorted.begin(), sorted.end());
 
-	unsigned int minSpan = std::numeric_limits<unsigned int>::max();
-	for (size_t i = 1; i < sorted.size(); ++i) {
-		unsigned int diff = sorted[i] - sorted[i - 1];
-		if (diff < minSpan) {
-			minSpan = diff;
-		}
-	} 
+	std::vector<unsigned int> diffs;
+	std::adjacent_difference(sorted.begin(), sorted.end(), std::back_inserter(diffs));
+
+	unsigned int minSpan = *std::min_element(diffs.begin() + 1, diffs.end());
 	return minSpan;
 }
 

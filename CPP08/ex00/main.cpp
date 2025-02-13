@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
-/*   Updated: 2024/12/12 10:23:21 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/07 11:09:19 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,20 @@ int main()
 	catch(const std::exception& e){
 		std::cerr << "Exception: " << e.what() << '\n';
 	}
+	
+	const std::vector<int> vecc = {1, 2, 3, 4, 5};
+	try
+    {
+		std::cout << "Trying to find 3 from vec\n";
+        std::vector<int>::iterator it = easyfind(vec, 3);  //give type to compiler
+        std::cout << "Found: " << *it << '\n';
+		std::cout << "Trying to find 10 from vec\n";
+        it = easyfind(vec, 10);
+        std::cout << "Found: " << *it << '\n';
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Exception: " << e.what() << '\n';
+    }
     return 0;
 }

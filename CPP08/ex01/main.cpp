@@ -6,15 +6,13 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/27 12:46:15 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/07 09:27:30 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Span.hpp"
-#include <vector>
-#include <deque>
-#include <cstdlib>
+#include <stdexcept>
 #include <ctime>
 
 int main()
@@ -39,7 +37,7 @@ int main()
 	std::cout << "Span1 shortest span: " << span1.shortestSpan() << std::endl;
 	std::cout << "Span1 longest span: " << span1.longestSpan() << std::endl;	
 
-	Span span2 = Span(16);
+	Span span2 = Span(10000);
 	Span span3 = Span(16000);
 	try
 	{
@@ -54,7 +52,7 @@ int main()
 	}
 	try
 	{
-		span2.addRandomNumbers(10, -10000, 10000);
+		span2.addRandomNumbers(100, -10000, 10000);
 		std::cout << "Span2 shortest span: " << span2.shortestSpan() << std::endl;
 		std::cout << "Span2 longest span: " << span2.longestSpan() << std::endl;
 	}
@@ -65,7 +63,7 @@ int main()
 
 	try
 	{
-		span3.addRandomNumbers(15000, -15000, 10000);
+		span3.addUniqueRandomNumbers(15000, -15000, 30000);
 		std::cout << "Span3 shortest span: " << span3.shortestSpan() << std::endl;
 		std::cout << "Span3 longest span: " << span3.longestSpan() << std::endl;
 	}
@@ -73,7 +71,4 @@ int main()
 	{
 		std::cerr << e.what() << '\n';
 	}
-
-
-	
 }

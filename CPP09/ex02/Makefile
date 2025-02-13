@@ -6,7 +6,7 @@
 #    By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 09:11:55 by tsaari            #+#    #+#              #
-#    Updated: 2025/02/04 08:43:43 by tsaari           ###   ########.fr        #
+#    Updated: 2025/02/05 17:10:04 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = PmergeMe
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++11 -g -fsanitize=address
 
-SRCS = main.cpp PmergeMe.cpp
+SRCS = main.cpp #PmergeMe.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
