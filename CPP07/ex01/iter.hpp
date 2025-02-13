@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:20:22 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/19 14:22:08 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/05 10:55:11 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,28 @@
 
 #include <iostream>
 #include <cstddef>
+#include <string>
+
 
 template <typename T>
-void printStringCapitalized(T& x) {
-	  for (char& c : x) {
-        c = std::toupper(c);
-    }
-	std::cout << x << " " << std::endl;
-}
-
-template <typename T>
-void printMultipleTwo (T& x) {
+void printMultipleTwo (const T& x) {
 	std::cout << x * 2 << std::endl;
 }
 
 
 template <typename T>
-void iter(T* a, size_t size, void (*f)(T&)) {
-	for (size_t i = 0; i < size; i++)
-		(*f)(a[i]);
+void iter(T* a, size_t size, void (*f)(const T&)) {
+    for (size_t i = 0; i < size; i++)
+        (*f)(a[i]);
 }
+
+template <typename T>
+void iter(T* a, size_t size, void (*f)(T&)) {
+    for (size_t i = 0; i < size; i++)
+        (*f)(a[i]);
+}
+
+
+
 
 #endif

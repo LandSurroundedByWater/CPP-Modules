@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 09:46:10 by tsaari            #+#    #+#             */
-/*   Updated: 2025/02/02 13:39:45 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/05 17:40:01 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,14 @@ void BitcoinExchange::processLine(const std::string& line) {
 	std::string date, separator;
 	float value;
 
-	if (!(iss >> date >> separator >> value) || !isValidDate(date) || separator != "|") {
+	if (!(iss >> date >> separator) || !isValidDate(date) || separator != "|") {
 		throw std::invalid_argument("Error: bad input => " + line);
 	}
+	std::string valueStr;
+    if (!(iss >> valueStr) || valueStr.find_first_not_of("0123456789.") != std::string::npos) {
+        throw std::invalid_argument("Error: bad input => " + line);
+    }
+	value = std::stof(valueStr);
 	if (value < 0) {
 		throw std::out_of_range("Error: not a positive number.");
 	}

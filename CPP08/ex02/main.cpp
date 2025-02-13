@@ -6,18 +6,22 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
-/*   Updated: 2025/01/31 09:22:58 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/07 10:51:24 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <list>
 #include <iostream>
+#include <vector>
+
+
 
 int main()
 {
 	
 	MutantStack<int> mstack;
+	//MutantStack<int, std::vector<int>> mstack;
 	mstack.push(5);
 	mstack.push(17);
 	std::cout << "top: " << mstack.top() << std::endl;
@@ -29,26 +33,28 @@ int main()
 	mstack.push(737);
 	std::cout << "top: " << mstack.top() << std::endl;
 	std::cout << "size: " << mstack.size() << std::endl;
-	//[...]
 	mstack.push(0);
 
 	std::cout << "Iterate and print all: ";
 	
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
-	++it;
-	--it;
+
+	//MutantStack<int, std::vector<int>>::const_iterator it = mstack.begin();
+	//MutantStack<int, std::vector<int>>::const_iterator ite = mstack.end();
+	
 	while (it != ite)
 	{
+		std::cout << *it;
+
 		if (++it != ite)
-			std::cout << *it << ", ";
-		else
-			std::cout << *it << std::endl;
+			std::cout << ", ";
 	}
-	std::stack<int> s(mstack);
+	
+	std::cout << std::endl;
+	//--------------------------------------------------------------
 
-
-
+	std::cout << std::endl;
 	std::cout << "Testing with std::list" << std::endl;
 	
 	std::list<int> lst;
@@ -63,7 +69,6 @@ int main()
 	lst.push_back(737);
 	std::cout << "top: " << lst.back() << std::endl;
 	std::cout << "size: " << lst.size() << std::endl;
-	//[...]
 	lst.push_back(0);
 
 	std::cout << "Iterate and print all: ";
@@ -71,15 +76,44 @@ int main()
 	std::list<int>::iterator itlst = lst.begin();
 	std::list<int>::iterator itelst = lst.end();
 
+	
 	while (itlst != itelst)
 	{
+		std::cout << *itlst;
+		
 		if (++itlst != itelst)
-			std::cout << *itlst << ", ";
-		else
-			std::cout << *itlst << std::endl;
+			std::cout << ", ";
 	}
+	std::cout << std::endl;
+
+
+	//--------------------------------------------------------------
+
+
+	std::cout << std::endl;
+	std::cout << "Testing with const stack and const iterators" << std::endl;
+	
+	const MutantStack<int> cmstack(mstack);
+	//const MutantStack<int, std::vector<int>> cmstack(mstack);
+	
+	
+	MutantStack<int>::const_iterator cit = cmstack.begin();
+	MutantStack<int>::const_iterator cite = cmstack.end();
 
 	
+	//MutantStack<int, std::vector<int>>::const_iterator cit = mstack.begin();
+	//MutantStack<int, std::vector<int>>::const_iterator cite = mstack.end();
+	
+	
+	std::cout << "Iterate and print all: ";
+	while (cit != cite)
+	{
+		std::cout << *cit;
+		if (++cit != cite)
+        	std::cout << ", ";
+	}
+	std::cout << std::endl;
+
 	return 0;
 		
 }

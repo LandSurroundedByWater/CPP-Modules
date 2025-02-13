@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:24:08 by tsaari            #+#    #+#             */
-/*   Updated: 2025/02/04 08:33:00 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/05 17:08:38 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,9 @@ void PmergeMe::loadVectorFromArgs(char **argv)
 		_vectorPairs.emplace_back(_originalVector[i], _originalVector[i + 1]);
 	}
 }
+
+
+
 
 void PmergeMe::makeSortingWithList() {
 	for (auto& pair : _listPairs) {

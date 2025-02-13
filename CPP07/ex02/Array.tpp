@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:53:21 by tsaari            #+#    #+#             */
-/*   Updated: 2024/11/21 14:04:21 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/05 11:41:20 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 //------------------CONSTRUCTORS AND DESTRUCTOR---------------------
 
 template <typename T>
-Array<T>::Array() : _data(new T[0]), _size(0) {
-    std::cout << " Default constructor used" << std::endl;
-    }
+Array<T>::Array() : _data(new T[0]), _size(0) {}
 
 template <typename T>
 Array<T>::Array(unsigned int size) : _data(new T[size]), _size(size) {}
@@ -48,7 +46,6 @@ Array<T>::~Array() {
     delete [] _data;
 }
 
-//subscript operator to get value of certain index from array.
 template <typename T>
 T &Array<T>::operator[](unsigned int index)
 {

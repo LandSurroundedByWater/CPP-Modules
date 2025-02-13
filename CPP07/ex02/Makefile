@@ -6,11 +6,11 @@
 #    By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 09:11:55 by tsaari            #+#    #+#              #
-#    Updated: 2024/11/21 11:48:19 by tsaari           ###   ########.fr        #
+#    Updated: 2025/02/05 11:06:52 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = templates
+NAME = array
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++11
