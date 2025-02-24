@@ -6,11 +6,12 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:29:27 by tsaari            #+#    #+#             */
-/*   Updated: 2025/02/02 17:55:59 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/18 13:28:07 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+#include <algorithm>
 
 
 RPN::RPN() {}

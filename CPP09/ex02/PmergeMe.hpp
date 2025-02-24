@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:23:55 by tsaari            #+#    #+#             */
-/*   Updated: 2025/02/04 08:28:28 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/24 12:53:02 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,26 @@ class PmergeMe
 		void makeSortingWithList();
 		void makeSortingWithVector();
 
-		std::list <int> getOriginalList() const;
-		std::vector <int> getOriginalVector() const;
+		std::list <unsigned int> getOriginalList() const;
+		std::vector <unsigned int> getOriginalVector() const;
 
-		std::list <int> getFinalList() const;
-		std::vector <int> getFinalVector() const;
+		std::list <unsigned int> getFinalList() const;
+		std::vector <unsigned int> getFinalVector() const;
 		
-		std::list <std::pair<int, int>> getListPairs() const;
-		std::vector <std::pair<int, int>> getVectorPairs() const;
+		std::list <std::pair<unsigned int, unsigned int>> getListPairs() const;
+		std::vector <std::pair<unsigned int, unsigned int>> getVectorPairs() const;
+
+
+		void mergeSortList(std::list<std::pair<unsigned int, unsigned int>>::iterator start,
+							 std::list<std::pair<unsigned int, unsigned int>>::iterator mid,
+							 std::list<std::pair<unsigned int, unsigned int>>::iterator end,
+							 std::list<std::pair<unsigned int, unsigned int>>& tempList);
+		
+		void mergeSplitList(std::list<std::pair<unsigned int, unsigned int>>::iterator start,
+							  std::list<std::pair<unsigned int, unsigned int>>::iterator end);
+
+		void mergeSplitVector(unsigned int start, unsigned int end);
+		void mergeSortVector( unsigned int  start, unsigned int  mid, unsigned int  end, std::vector <std::pair<unsigned int , unsigned int>>& tempVector);
 		
 		
 		class NegativeNumberException : public std::exception {
@@ -48,17 +60,19 @@ class PmergeMe
 		
 		
 	private:
-		int listOrphan;
-		int vectorOrphan;
+		unsigned int listOrphan;
+		unsigned int vectorOrphan;
+		bool isOrphan;
 		
-		std::list <int> _originalList;
-		std::vector <int> _originalVector;
+		std::list <unsigned int> _originalList;
+		std::vector <unsigned int> _originalVector;
 		
-		std::list <std::pair<int, int>> _listPairs;
-		std::vector <std::pair<int, int>> _vectorPairs;
+		std::list <std::pair<unsigned int, unsigned int>> _listPairs;
+		std::vector <std::pair<unsigned int, unsigned int>> _vectorPairs;
+		
 
-		std::list <int> _finalList;
-		std::vector <int> _finalVector;
+		std::list <unsigned int> _finalList;
+		std::vector <unsigned int> _finalVector;
 		
 		PmergeMe();
 		PmergeMe(const PmergeMe &other);

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
-/*   Updated: 2025/02/05 17:17:51 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/24 13:09:52 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,106 +15,10 @@
 #include "PmergeMe.hpp"
 #include <chrono>
 #include <iomanip>
-
-
-
-
-#include <iostream>
 #include <vector>
-
-using namespace std;
-
-// Merge two sorted subarrays into one sorted array
-void merge(vector<int>& arr, int left, int mid, int right) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-
-    vector<int> leftArr(n1);
-    vector<int> rightArr(n2);
-
-    // Copy data to temporary arrays
-    for (int i = 0; i < n1; i++)
-	{
-		leftArr[i] = arr[left + i];
-	}
-    for (int i = 0; i < n2; i++) {
-		rightArr[i] = arr[mid + 1 + i];
-	}
-	
-
-	for (auto i: leftArr)
-		std::cout << "left: " << i << " ";
-	std::cout << std::endl;
-
-	for (auto i: rightArr)
-		std::cout << "right: " << i << " ";
-	std::cout << std::endl;
-    // Merge the temp arrays back into arr
-    int i = 0, j = 0, k = left;
-    while (i < n1 && j < n2) {
-        if (leftArr[i] <= rightArr[j]) {
-            arr[k] = leftArr[i];
-            i++;
-        } else {
-            arr[k] = rightArr[j];
-            j++;
-        }
-        k++;
-    }
-
-    // Copy remaining elements of leftArr (if any)
-    while (i < n1) {
-        arr[k] = leftArr[i];
-        i++;
-        k++;
-    }
-
-    // Copy remaining elements of rightArr (if any)
-    while (j < n2) {
-        arr[k] = rightArr[j];
-        j++;
-        k++;
-    }
-}
-
-// Recursive merge sort function
-void mergeSort(vector<int>& arr, int left, int right) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;  // Find the middle index
-
-        mergeSort(arr, left, mid);       // Sort first half
-        mergeSort(arr, mid + 1, right);  // Sort second half
-
-        merge(arr, left, mid, right);    // Merge sorted halves
-    }
-}
-
-// Helper function to print the vector
-void printVector(const vector<int>& arr) {
-    for (int num : arr)
-        cout << num << " ";
-    cout << endl;
-}
-
-// Driver code
-int main() {
-    vector<int> largerElements = {15, 8, 23, 4, 42, 16, 7, 12, 27, 3};
-
-    cout << "Original array: ";
-    printVector(largerElements);
-
-    mergeSort(largerElements, 0, largerElements.size() - 1);
-
-    cout << "Sorted array: ";
-    printVector(largerElements);
-
-    return 0;
-}
+#include <list>
 
 
-
-
-/*
 int main(int argc, char** argv) {
 
 	std::chrono::duration<double> durationList;
@@ -128,9 +32,10 @@ int main(int argc, char** argv) {
 		std::cout << "Usage example: " << argv[0] << " 1-3000 random nubers separated by \" \"" << std::endl;
 		return 1;
 	}
+
 	//sorting with list
 	try{
-		std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+		auto start = std::chrono::high_resolution_clock::now();
 		std::list <unsigned int> mergeList;
 		PmergeMe listed(argv, PmergeMe::LIST);
 		
@@ -151,8 +56,9 @@ int main(int argc, char** argv) {
 			else
 				listAfter += std::to_string(i) + ", ";
 		}
-		std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();	
-		durationList = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
+		auto end = std::chrono::high_resolution_clock::now();	
+		durationList = std::chrono::duration_cast<std::chrono::duration<double, std::micro>>(end - start);
+		
 	}
 	 catch (const PmergeMe::NegativeNumberException &e) {
         std::cerr << e.what() << std::endl;
@@ -162,9 +68,13 @@ int main(int argc, char** argv) {
         std::cerr << "Error: " << e.what() << std::endl;
         return 1;
     }
+
+
+
+	
 	//soting with vector
 	try{
-		std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+		auto start = std::chrono::high_resolution_clock::now();
 		PmergeMe vectorized(argv, PmergeMe::VECTOR);
 		for (auto i : vectorized.getOriginalVector())
 		{
@@ -184,8 +94,8 @@ int main(int argc, char** argv) {
 			else
 				vectorAfter += std::to_string(i) + ", ";
 		}
-		std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();	
-		durationVector = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
+		auto end = std::chrono::high_resolution_clock::now();	
+		durationVector = std::chrono::duration_cast<std::chrono::duration<double, std::micro>>(end - start);
 
 	}
 	catch (const PmergeMe::NegativeNumberException &e) {
@@ -197,6 +107,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+	///checking if results match and printing result
 	if (vectorAfter != listAfter || vectorBefore != listBefore)
 	{
 		std::cerr << "Error: The results are not the same!" << std::endl;
@@ -207,14 +118,24 @@ int main(int argc, char** argv) {
 		std::cout << "Before: " << listBefore << std::endl;
 		std::cout << "After: " << listAfter << std::endl;
 	}
+	
+
 	std::cout << "Time to process a range of " << listSize << " elements with std::list: "
-	<< std::fixed << std::setprecision(6) << durationList.count() << " seconds" << std::endl;
+    << std::fixed << std::setprecision(6) << durationList.count() << " microseconds" << std::endl;
 
 	std::cout << "Time to process a range of " << listSize << " elements with std::vector: "
-	<< std::fixed << std::setprecision(6) << durationVector.count() << " seconds" << std::endl;
-	
+    << std::fixed << std::setprecision(6) << durationVector.count() << " microseconds" << std::endl;
+
+	/*	std::cout << "Time to process a range of " << listSize << " elements with std::list: "
+	<< std::fixed << std::setprecision(6) << durationList.count() << " us" << std::endl;
+
+	std::cout << "Time to process a range of " << listSize << " elements with std::vector: "
+	<< std::fixed << std::setprecision(6) << durationVector.count() << " us" << std::endl;
+	*/
+
+
 	return 0;
 }
-*/
+
 
 
