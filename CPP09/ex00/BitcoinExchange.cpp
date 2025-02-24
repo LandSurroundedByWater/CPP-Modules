@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 09:46:10 by tsaari            #+#    #+#             */
-/*   Updated: 2025/02/05 17:40:01 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/02/19 10:24:42 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ bool isValidDate(const std::string& targetDate) {
 
 	std::istringstream dateStream(targetDate);
 	if (!(dateStream >> year >> dash1 >> month >> dash2 >> day) || dash1 != '-' || dash2 != '-') {
-		return false; 
+		return false;
 	}
 
 	std::time_t t = std::time(nullptr);
