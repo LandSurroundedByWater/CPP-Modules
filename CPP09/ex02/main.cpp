@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
-/*   Updated: 2025/02/24 13:09:52 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/03/10 09:39:02 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,83 +16,85 @@
 #include <chrono>
 #include <iomanip>
 #include <vector>
-#include <list>
+#include <deque>
 
 
 int main(int argc, char** argv) {
 
-	std::chrono::duration<double> durationList;
+	std::chrono::duration<double> durationDeque;
+	std::string dequeBefore;
+	std::string dequeAfter;
+	
 	std::chrono::duration<double> durationVector;
-	std::string listBefore;
 	std::string vectorBefore;
-	std::string listAfter;
 	std::string vectorAfter;
-	int listSize = 0; 
+	int containerSize = 0; 
 	if (argc < 2) {
 		std::cout << "Usage example: " << argv[0] << " 1-3000 random nubers separated by \" \"" << std::endl;
 		return 1;
 	}
-
-	//sorting with list
+	
+	//soting with deque
 	try{
 		auto start = std::chrono::high_resolution_clock::now();
-		std::list <unsigned int> mergeList;
-		PmergeMe listed(argv, PmergeMe::LIST);
-		
-		for (auto i : listed.getOriginalList())
+		PmergeMe dequed(argv, PmergeMe::DEQUE);
+		for (size_t i = 0; i < dequed.getOriginalDeque().size(); ++i)
 		{
-			
-			if (i == listed.getOriginalList().back())
-				listBefore += std::to_string(i);
-			else
-				listBefore += std::to_string(i) + ", ";
+			dequeBefore += std::to_string(dequed.getOriginalDeque()[i]);
+			if (i != dequed.getOriginalDeque().size() - 1)
+			{
+				dequeBefore += ", ";
+			}
 		}
-		listSize = listed.getOriginalList().size();
-		listed.makeSortingWithList();
-		for (auto i : listed.getFinalList())
+		containerSize = dequed.getOriginalDeque().size();
+		
+		dequed.makeSortingWithDeque();
+		
+		for (size_t i = 0; i <  dequed.getFinalDeque().size(); ++i)
 		{
-			if (i == listed.getFinalList().back())
-				listAfter += std::to_string(i);
-			else
-				listAfter += std::to_string(i) + ", ";
+			dequeAfter += std::to_string(dequed.getFinalDeque()[i]);
+			if (i != dequed.getFinalDeque().size() - 1)
+			{
+				dequeAfter += ", ";
+			}
 		}
 		auto end = std::chrono::high_resolution_clock::now();	
-		durationList = std::chrono::duration_cast<std::chrono::duration<double, std::micro>>(end - start);
-		
+		durationDeque = std::chrono::duration_cast<std::chrono::duration<double, std::micro>>(end - start);
+
 	}
-	 catch (const PmergeMe::NegativeNumberException &e) {
-        std::cerr << e.what() << std::endl;
-        return 1;
-    }
-    catch (const std::exception &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-        return 1;
-    }
+	catch (const PmergeMe::NegativeNumberException &e) {
+		std::cerr << e.what() << std::endl;
+		return 1; 
+	}
+	catch (const std::exception &e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+		return 1;
+	}
 
 
-
-	
 	//soting with vector
 	try{
 		auto start = std::chrono::high_resolution_clock::now();
 		PmergeMe vectorized(argv, PmergeMe::VECTOR);
-		for (auto i : vectorized.getOriginalVector())
+		for (size_t i = 0; i < vectorized.getOriginalVector().size(); ++i)
 		{
-			if (i == vectorized.getOriginalVector().back())
-				vectorBefore += std::to_string(i);
-			else
-				vectorBefore += std::to_string(i) + ", ";
+			vectorBefore += std::to_string(vectorized.getOriginalVector()[i]);
+			if (i != vectorized.getOriginalVector().size() - 1)
+			{
+				vectorBefore += ", ";
+			}
 		}
-		listSize = vectorized.getOriginalVector().size();
+		containerSize = vectorized.getOriginalVector().size();
 		
 		vectorized.makeSortingWithVector();
 		
-		for (auto i : vectorized.getFinalVector())
+		for (size_t i = 0; i <  vectorized.getFinalVector().size(); ++i)
 		{
-			if (i == vectorized.getFinalVector().back())
-				vectorAfter += std::to_string(i);
-			else
-				vectorAfter += std::to_string(i) + ", ";
+			vectorAfter += std::to_string(vectorized.getFinalVector()[i]);
+			if (i != vectorized.getFinalVector().size() - 1)
+			{
+				vectorAfter += ", ";
+			}
 		}
 		auto end = std::chrono::high_resolution_clock::now();	
 		durationVector = std::chrono::duration_cast<std::chrono::duration<double, std::micro>>(end - start);
@@ -107,31 +109,34 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-	///checking if results match and printing result
-	if (vectorAfter != listAfter || vectorBefore != listBefore)
+
+	//check results
+
+	if (vectorAfter != dequeAfter)
 	{
 		std::cerr << "Error: The results are not the same!" << std::endl;
 		return 1;
 	}
 	else
 	{
-		std::cout << "Before: " << listBefore << std::endl;
-		std::cout << "After: " << listAfter << std::endl;
+		std::cout << "DequeBefore: " << dequeBefore << std::endl;
+		std::cout << std::endl;
+		std::cout << "DequeAfter: " << dequeAfter << std::endl;
+		std::cout << std::endl;
+		std::cout << "VectorBefore: " << vectorBefore << std::endl;
+		std::cout << std::endl;
+		std::cout << "VectorAfter: " << vectorAfter << std::endl;
+		std::cout << std::endl;
+		
 	}
+
+
+   std::cout << "Time to process a range of " << containerSize << " elements with std::deque: "
+    << std::fixed << std::setprecision(6) << durationDeque.count() << " microseconds" << std::endl;
 	
 
-	std::cout << "Time to process a range of " << listSize << " elements with std::list: "
-    << std::fixed << std::setprecision(6) << durationList.count() << " microseconds" << std::endl;
-
-	std::cout << "Time to process a range of " << listSize << " elements with std::vector: "
+	std::cout << "Time to process a range of " << containerSize << " elements with std::vector: "
     << std::fixed << std::setprecision(6) << durationVector.count() << " microseconds" << std::endl;
-
-	/*	std::cout << "Time to process a range of " << listSize << " elements with std::list: "
-	<< std::fixed << std::setprecision(6) << durationList.count() << " us" << std::endl;
-
-	std::cout << "Time to process a range of " << listSize << " elements with std::vector: "
-	<< std::fixed << std::setprecision(6) << durationVector.count() << " us" << std::endl;
-	*/
 
 
 	return 0;

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 09:46:10 by tsaari            #+#    #+#             */
-/*   Updated: 2025/02/19 10:24:42 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/03/10 09:54:17 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,4 +148,3 @@ void BitcoinExchange::loadDataFromFile(const std::string& filename) {
 		_dateValueMap[date] = value;
 	}
 }
-

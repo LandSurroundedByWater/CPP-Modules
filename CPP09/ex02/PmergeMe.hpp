@@ -6,12 +6,12 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:23:55 by tsaari            #+#    #+#             */
-/*   Updated: 2025/02/24 12:53:02 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/03/05 13:17:37 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <list>
 #include <vector>
+#include <deque>
 #include <stdexcept>
 #include <iostream>
 #include <string>
@@ -20,35 +20,30 @@ class PmergeMe
 {
 	public:
 
-		enum ContainerType { LIST, VECTOR };
+		enum ContainerType { DEQUE, VECTOR };
 	
 		PmergeMe(char **argv, ContainerType type);
 		~PmergeMe();
-
-		void makeSortingWithList();
+		
 		void makeSortingWithVector();
+		void makeSortingWithDeque();
 
-		std::list <unsigned int> getOriginalList() const;
-		std::vector <unsigned int> getOriginalVector() const;
+		std::vector <int> getOriginalVector() const;
+		std::deque <int> getOriginalDeque() const;
 
-		std::list <unsigned int> getFinalList() const;
-		std::vector <unsigned int> getFinalVector() const;
+		std::vector <int> getFinalVector() const;
+		std::deque <int> getFinalDeque() const;
 		
-		std::list <std::pair<unsigned int, unsigned int>> getListPairs() const;
-		std::vector <std::pair<unsigned int, unsigned int>> getVectorPairs() const;
+		std::vector <std::pair<int, int>> getVectorPairs() const;
+		std::deque <std::pair<int, int>> getDequePairs() const;
 
+		void mergeSplitDeque(int start, int end);
+		void mergeSortDeque( int  start, int mid, int end, std::deque <std::pair<int, int>>& tempDeque);
 
-		void mergeSortList(std::list<std::pair<unsigned int, unsigned int>>::iterator start,
-							 std::list<std::pair<unsigned int, unsigned int>>::iterator mid,
-							 std::list<std::pair<unsigned int, unsigned int>>::iterator end,
-							 std::list<std::pair<unsigned int, unsigned int>>& tempList);
-		
-		void mergeSplitList(std::list<std::pair<unsigned int, unsigned int>>::iterator start,
-							  std::list<std::pair<unsigned int, unsigned int>>::iterator end);
-
-		void mergeSplitVector(unsigned int start, unsigned int end);
-		void mergeSortVector( unsigned int  start, unsigned int  mid, unsigned int  end, std::vector <std::pair<unsigned int , unsigned int>>& tempVector);
-		
+		void mergeSplitVector(int start, int end);
+		void mergeSortVector(int  start, int mid, int end, std::vector <std::pair<int, int>>& tempVector);
+		void insertUsingJacobsthalDeque();
+		void insertUsingJacobsthalVector();
 		
 		class NegativeNumberException : public std::exception {
 		public:
@@ -60,24 +55,26 @@ class PmergeMe
 		
 		
 	private:
-		unsigned int listOrphan;
-		unsigned int vectorOrphan;
+
+		int dequeOrphan;
+		int vectorOrphan;
 		bool isOrphan;
 		
-		std::list <unsigned int> _originalList;
-		std::vector <unsigned int> _originalVector;
-		
-		std::list <std::pair<unsigned int, unsigned int>> _listPairs;
-		std::vector <std::pair<unsigned int, unsigned int>> _vectorPairs;
+
+		std::vector <int> _originalVector;
+		std::deque <int> _originalDeque;
 		
 
-		std::list <unsigned int> _finalList;
-		std::vector <unsigned int> _finalVector;
+		std::vector <std::pair<int, int>> _vectorPairs;
+		std::deque <std::pair<int, int>> _dequePairs;
+
+		std::vector <int> _finalVector;
+		std::deque <int> _finalDeque;
 		
 		PmergeMe();
 		PmergeMe(const PmergeMe &other);
 		PmergeMe &operator=(const PmergeMe &other);
 
-		void loadListFromArgs(char **argv);
 		void loadVectorFromArgs(char **argv);
+		void loadDequeFromArgs(char **argv);
 };
