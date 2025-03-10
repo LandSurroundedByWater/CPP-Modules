@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:24:08 by tsaari            #+#    #+#             */
-/*   Updated: 2025/03/05 14:44:26 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/03/10 09:48:33 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,10 @@ void PmergeMe::loadVectorFromArgs(char **argv)
 		_originalVector.push_back(vectorOrphan);
 }
 
+
 //----------------------------DEQUE-------------------------------------
+
+
 
 std::deque<int> generateJacobsthalDeque(int n) {
 	std::deque<int> jacobsthal = {0, 1};
@@ -132,49 +135,29 @@ std::deque<int> generateJacobsthalDeque(int n) {
 	return jacobsthal;
 }
 
-// Function to manually sort with minimal swaps
-void manualSort(std::deque<int>& arr) {
-	int n = arr.size();
-	for (int i = 1; i < n; i++) {
-		int j = i;
-		while (j > 0 && arr[j] < arr[j - 1]) {
-			std::swap(arr[j], arr[j - 1]); // Swap adjacent elements if out of order
-			j--;
-		}
+int binarySearchInsertPositionOptimized(const std::deque<int>& arr, int value, int limit) {
+	int left = 0, right = limit;
+	while (left < right) {
+		int mid = left + (right - left) / 2;
+		if (arr[mid] < value)
+			left = mid + 1;
+		else
+			right = mid;
 	}
+	return right;
 }
 
+// Insert using Jacobsthal numbers and binary insertion, a
 void PmergeMe::insertUsingJacobsthalDeque() {
-    std::deque<int> jacobsthal = generateJacobsthalDeque(_dequePairs.size() + 2);
-    for (size_t i = 0; i < _dequePairs.size(); i++) {
-        // Ensure pos doesn't exceed the size of _finalDeque
-        size_t pos = std::min(jacobsthal[i], (int)_finalDeque.size());
-        
-        std::cout << "jacobsthal[" << i << "]: " << jacobsthal[i] << ", pos: " << pos << std::endl;
-
-        if (pos >= 0 && pos <= _finalDeque.size()) {
-            // Insert the second value of the pair at the calculated position
-            _finalDeque.insert(_finalDeque.begin() + pos, _dequePairs[i].second);
-        } else {
-            std::cerr << "Invalid position: " << pos << std::endl;
-        }
-    }
-    // Optionally, manually sort the deque if necessary
-    manualSort(_finalDeque);
-}
-/*void PmergeMe::insertUsingJacobsthalDeque() {                                            ////////segfaults
 	std::deque<int> jacobsthal = generateJacobsthalDeque(_dequePairs.size() + 2);
 	for (size_t i = 0; i < _dequePairs.size(); i++) {
-		size_t pos = std::min(jacobsthal[i], (int)_finalDeque.size());
-		std::cout << "pos: " << pos << std::endl;
-		if (pos >= 0 && pos <= _finalDeque.size())
-			_finalDeque.insert(_finalDeque.begin() + pos, _dequePairs[i].second);
-		else {
-			std::cerr << "Invalid position: " << pos << std::endl;
-		}
+		int value = _dequePairs[i].second;
+		
+		int pos = binarySearchInsertPositionOptimized(_finalDeque, value, _finalDeque.size());
+
+		_finalDeque.insert(_finalDeque.begin() + pos, value);
 	}
-	manualSort(_finalDeque);
-}*/
+}
 
 
 void PmergeMe::mergeSortDeque(int start, int mid, int end, std::deque <std::pair<int , int>>& tempDeque)
@@ -218,7 +201,7 @@ void PmergeMe::mergeSplitDeque(int start, int end)
 
 void PmergeMe::makeSortingWithDeque() {
 	for (auto& pair : _dequePairs) {
-		if (pair.first < pair.second) {
+		if (pair.first < pair.second) { 
 			std::swap(pair.first, pair.second);
 		}
 	}
@@ -234,10 +217,11 @@ void PmergeMe::makeSortingWithDeque() {
 
 
 
+
 //----------------------------Vector-------------------------------------
 
 std::vector<int> generateJacobsthalVector(int n) {
-	std::vector<int> jacobsthal = {0, 1};  // Base cases
+	std::vector<int> jacobsthal = {0, 1};
 	while ((int)jacobsthal.size() < n) {
 		int next = jacobsthal[jacobsthal.size() - 1] + 2 * jacobsthal[jacobsthal.size() - 2];
 		jacobsthal.push_back(next);
@@ -245,25 +229,29 @@ std::vector<int> generateJacobsthalVector(int n) {
 	return jacobsthal;
 }
 
-void manualSort(std::vector<int>& arr) {
-	int n = arr.size();
-	for (int i = 1; i < n; i++) {
-		int j = i;
-		while (j > 0 && arr[j] < arr[j - 1]) {
-			std::swap(arr[j], arr[j - 1]); // Swap adjacent elements if out of order
-			j--;
-		}
+int binarySearchInsertPositionOptimized(const std::vector<int>& arr, int value, int limit) {
+	int left = 0, right = limit;
+	while (left < right) {
+		int mid = left + (right - left) / 2;
+		if (arr[mid] < value)
+			left = mid + 1;
+		else
+			right = mid;
 	}
+	return right;
 }
-
 
 void PmergeMe::insertUsingJacobsthalVector() {
 	std::vector<int> jacobsthal = generateJacobsthalVector(_vectorPairs.size() + 2);
+	std::cout << std::endl;
+
 	for (size_t i = 0; i < _vectorPairs.size(); i++) {
-		int pos = std::min(jacobsthal[i], (int)_finalVector.size()); 
-		_finalVector.insert(_finalVector.begin() + pos, _vectorPairs[i].second); 
+		int value = _vectorPairs[i].second;
+
+		int pos = binarySearchInsertPositionOptimized(_finalVector, value, _finalVector.size());
+
+		_finalVector.insert(_finalVector.begin() + pos, value);
 	}
-	manualSort(_finalVector);
 }
 
 

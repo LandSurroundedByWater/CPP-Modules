@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:19:09 by tsaari            #+#    #+#             */
-/*   Updated: 2025/03/05 13:54:49 by tsaari           ###   ########.fr       */
+/*   Updated: 2025/03/10 09:39:02 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int main(int argc, char** argv) {
 	}
 
 
-
 	//soting with vector
 	try{
 		auto start = std::chrono::high_resolution_clock::now();
@@ -111,21 +110,27 @@ int main(int argc, char** argv) {
     }
 
 
+	//check results
+
 	if (vectorAfter != dequeAfter)
 	{
 		std::cerr << "Error: The results are not the same!" << std::endl;
 		return 1;
 	}
-	
 	else
 	{
 		std::cout << "DequeBefore: " << dequeBefore << std::endl;
+		std::cout << std::endl;
 		std::cout << "DequeAfter: " << dequeAfter << std::endl;
+		std::cout << std::endl;
 		std::cout << "VectorBefore: " << vectorBefore << std::endl;
+		std::cout << std::endl;
 		std::cout << "VectorAfter: " << vectorAfter << std::endl;
+		std::cout << std::endl;
 		
 	}
-	
+
+
    std::cout << "Time to process a range of " << containerSize << " elements with std::deque: "
     << std::fixed << std::setprecision(6) << durationDeque.count() << " microseconds" << std::endl;
 	
